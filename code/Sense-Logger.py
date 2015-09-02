@@ -30,7 +30,7 @@ def get_sense_data():
     #Get the compass data and round to 2 decimal places
     compass = round(sense.get_compass(),2)
 
-    return datetime.now(),temperature,humidy,pressure,yaw,pitch,roll,x,y,z,compass
+    return datetime.now(),temperature,humidity,pressure,yaw,pitch,roll,x,y,z,compass
 
 while True:
     sensor_values = ",".join(str(bit) for bit in get_sense_data())
