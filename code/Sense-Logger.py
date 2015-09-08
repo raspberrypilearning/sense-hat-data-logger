@@ -1,70 +1,146 @@
 from datetime import datetime
 from sense_hat import SenseHat
-from collections import OrderedDict
+from evdev import InputDevice, categorize, ecodes,list_devices
+from select import select
+import threading
 
 sense = SenseHat()
 
-sense_setting={"TEMPERATURE":True,"HUMIDITY":False,"PRESSURE":False,"ORIENTATION":True,"ACCELERATION":True,"COMPASS":True}
-sense_data = OrderedDict()
-filename = str(datetime.now()) + "-SenseLog.csv"
+## Logging Settings
+TEMPERATURE=True
+HUMIDITY=True
+PRESSURE=True
+ORIENTATION=True
+ACCELERATION=True
+MAG=True
+GYRO=True
+DELAY = 0
+BASENAME = ""
 
+def file_setup(filename):
+    header =[]
+    if TEMPERATURE:
+        header.extend(["temp_h","temp_p"])
+    if HUMIDITY:
+        header.append("humidity")
+    if PRESSURE:
+        header.append("pressure")
+    if ORIENTATION:
+        header.extend(["pitch","roll","yaw"])
+    if ACCELERATION:
+        header.extend(["mag_x","mag_y","mag_z"])
+    if MAG:
+        header.extend(["accel_x","accel_y","accel_z"])
+    if GYRO:
+        header.extend(["gyro_x","gyro_y","gyro_z"])
+    header.append("timestamp")
+
+    with open(filename,"w") as f:
+        f.write(",".join(str(value) for value in header)+ "\n")
+
+## Function to capture input from the Sense Hat Joystick
+def get_joystick():
+    devices = [InputDevice(fn) for fn in list_devices()]
+    for dev in devices: 
+        if dev.name == "Raspberry Pi Sense HAT Joystick":
+            return dev
+
+## Function to collect data from the sense hat and build a string
 def get_sense_data():
-    sense_data["Timestamp"] = datetime.now()
-    #Get the temperature and round the figure to 2 decimal places
-    if sense_setting["TEMPERATURE"]:
-        sense_data["Temperature"]=round(sense.get_temperature(),2)
+    sense_data=[]
+    
+    if TEMPERATURE:
+        sense_data.extend([sense.get_temperature_from_humidity(),sense.get_temperature_from_pressure()])
         
-
-    #Get the humidity and round the figure to 2 decimal places
-    if sense_setting["HUMIDITY"]:
-        sense_data["Humidity"] = round(sense.get_humidity(),2)
+    if HUMIDITY:
+        sense_data.append(sense.get_humidity())
+     
+    if PRESSURE:
+        sense_data.append(sense.get_pressure())
         
+    if ORIENTATION:
+        yaw,pitch,roll = sense.get_orientation().values()        
+        sense_data.extend([pitch,roll,yaw])
 
-    #Get the pressure and round the figure to 2 decimal places
-    if sense_setting["PRESSURE"]:
-        sense_data["Pressure"]=round(sense.get_pressure())
-        
+    if MAG:
+        mag_x,mag_y,mag_z = sense.get_compass_raw().values()
+        sense_data.append([mag_x,mag_y,mag_z])
 
-    #Get the yaw,pitch,roll data from the orientation sensor
-    if sense_setting["ORIENTATION"]:
-        yaw,pitch,roll = sense.get_orientation().values()
-        #Round the yaw,pitch,roll data to 2 decimal places
-        sense_data["Yaw"] = round(yaw,2)
-        sense_data["Pitch"] = round(pitch,2)
-        sense_data["Roll"] = round(roll,2)
-
-    #Get the acceleration in the 3 axes and then round them to 2 decimal places
-    if sense_setting["ACCELERATION"]:
+    if ACCELERATION:
         x,y,z = sense.get_accelerometer_raw().values()
-        sense_data["X_Acceleration"] = round(x,2)
-        sense_data["Y_Acceleration"] = round(y,2)
-        sense_data["Z_Acceleration"] = round(z,2)
+        sense_data.extend([x,y,z])
 
-    #Get the compass data and round to 2 decimal places
-    if sense_setting["COMPASS"]:
-        sense_data["compass"] = round(sense.get_compass(),2)
-
+    if GYRO:
+        gyro_x,gyro_y,gyro_z = sense.get_gyroscope_raw().values()
+        sense_data.extend([gyro_x,gyro_y,gyro_z])
+    
+    sense_data.append(datetime.now())
      
     return sense_data
 
-def write_header():
-    headerstring = ",".join(str(bit) for bit in get_sense_data().keys())
-    with open(filename,"w") as f:
-        f.write(headerstring + "\n")
+def show_state(logging):
+    if logging:
+        sense.show_letter("!",text_colour=[0,255,0])
+    else:
+        sense.show_letter("!",text_colour=[255,0,0])
+
+def check_input():
+    r, w, x = select([dev.fd], [], [],0.01)
+    for fd in r:
+        for event in dev.read():
+            if event.type == ecodes.EV_KEY and event.value == 1:
+                print(event.code)
+                if event.code == ecodes.KEY_UP:
+                    print("quiting")
+                    return True,False
+                else:
+                    return True,True
+    return False,True
+
+def log_data():
+    output_string = ",".join(str(value) for value in sense_data)
+    batch_data.append(output_string)
+
+def timed_log():
+  threading.Timer(DELAY, timed_log).start()
+  if logging == True:
+        print("logged")
+        log_data()
 
 
-write_header()
+## Main Program
+run=True
+logging=False
+show_state(logging)
+dev = get_joystick()
+batch_data= []
 
-while True:
-    output_string = ""
+if BASENAME == "":
+    filename = "SenseLog-"+str(datetime.now())+".csv"
+else:
+    filename = BASENAME+"-"+str(datetime.now())+".csv"
+
+file_setup(filename)
+
+if DELAY >= 1:
+    timed_log()
+
+while run==True:
+    
+    key_press,run = check_input()
+
+    if key_press:
+        if logging==True:
+            with open(filename,"a") as f:
+                for line in batch_data:
+                    f.write(str(line) + "\n")
+            batch_data= []
+        logging = not(logging)
+        show_state(logging)
+
     sense_data = get_sense_data()
-    for item in sense_data:
-        output_string = ",".join((output_string,str(sense_data[item])))
-
-    print(output_string)
-
-    with open(
-        filename,"a") as f:
-        f.write(output_string + "\n")
+    if logging == True and DELAY < 1:
+        log_data()
 
 
+sense.clear()
