@@ -1,26 +1,33 @@
 from datetime import datetime
+import time
 from sense_hat import SenseHat
 from evdev import InputDevice, categorize, ecodes,list_devices
 from select import select
-import threading
-
-sense = SenseHat()
+import picamera
+from threading import Thread
 
 ## Logging Settings
-TEMPERATURE=True
+TEMP_H=True
+TEMP_P=False
 HUMIDITY=True
-PRESSURE=True
-ORIENTATION=True
+PRESSURE=False
+ORIENTATION=False
 ACCELERATION=True
 MAG=True
-GYRO=True
-DELAY = 0
+GYRO=False
+DELAY = 2
 BASENAME = ""
+WRITE_FREQUENCY = 1
+ENABLE_CAMERA = False
+LOG_AT_START = False
+
 
 def file_setup(filename):
     header =[]
-    if TEMPERATURE:
-        header.extend(["temp_h","temp_p"])
+    if TEMP_H:
+        header.append("temp_h")
+    if TEMP_P:
+        header.append("temp_p")
     if HUMIDITY:
         header.append("humidity")
     if PRESSURE:
@@ -49,8 +56,11 @@ def get_joystick():
 def get_sense_data():
     sense_data=[]
     
-    if TEMPERATURE:
-        sense_data.extend([sense.get_temperature_from_humidity(),sense.get_temperature_from_pressure()])
+    if TEMP_H:
+        sense_data.append(sense.get_temperature_from_humidity())
+
+    if TEMP_P:
+        sense_data.append(sense.get_temperature_from_pressure())
         
     if HUMIDITY:
         sense_data.append(sense.get_humidity())
@@ -85,32 +95,39 @@ def show_state(logging):
         sense.show_letter("!",text_colour=[255,0,0])
 
 def check_input():
+    running = True
+    logging_event = False
     r, w, x = select([dev.fd], [], [],0.01)
     for fd in r:
         for event in dev.read():
             if event.type == ecodes.EV_KEY and event.value == 1:
-                print(event.code)
+                logging_event = True
                 if event.code == ecodes.KEY_UP:
-                    print("quiting")
-                    return True,False
-                else:
-                    return True,True
-    return False,True
+                    if ENABLE_CAMERA and camera.recording: camera.stop_recording()
+                    running = False
+                if event.code == ecodes.KEY_LEFT:
+                    if ENABLE_CAMERA : 
+                        camera.start_recording("SenseVid-"+str(datetime.now())+".h264")
+                        logging_event = False
+                    
+
+    return logging_event,running
 
 def log_data():
     output_string = ",".join(str(value) for value in sense_data)
     batch_data.append(output_string)
 
 def timed_log():
-  threading.Timer(DELAY, timed_log).start()
-  if logging == True:
-        print("logged")
-        log_data()
+    while run:
+        if logging == True:
+            log_data()
+        time.sleep(DELAY)
 
 
 ## Main Program
+sense = SenseHat()
 run=True
-logging=False
+logging=LOG_AT_START
 show_state(logging)
 dev = get_joystick()
 batch_data= []
@@ -123,24 +140,35 @@ else:
 file_setup(filename)
 
 if DELAY >= 1:
-    timed_log()
+    Thread(target= timed_log).start()
+    
+
+if ENABLE_CAMERA: camera = picamera.PiCamera()
 
 while run==True:
+    sense_data = get_sense_data()
     
-    key_press,run = check_input()
+    logging_event,run = check_input()
 
-    if key_press:
-        if logging==True:
-            with open(filename,"a") as f:
-                for line in batch_data:
-                    f.write(str(line) + "\n")
-            batch_data= []
+    if logging_event:
         logging = not(logging)
         show_state(logging)
 
-    sense_data = get_sense_data()
     if logging == True and DELAY < 1:
         log_data()
+    
+    if len(batch_data) >= WRITE_FREQUENCY:
+        with open(filename,"a") as f:
+            for line in batch_data:
+                f.write(line + "\n")
+            batch_data = []
+
+
+with open(filename,"a") as f:
+    for line in batch_data:
+        f.write(line + "\n")
+        batch_data = []
 
 
 sense.clear()
+

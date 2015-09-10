@@ -3,7 +3,7 @@ from sense_hat import SenseHat
 from datetime import datetime
 
 ###### Settings ######
-filename = "
+
 
 ###### Functions ######
 def get_sense_data():   
@@ -16,7 +16,7 @@ def get_sense_data():
   sense_data.extend([pitch,roll,yaw])
   
   mag_x,mag_y,mag_z = sense.get_compass_raw().values()
-  sense_data.append([mag_x,mag_y,mag_z])
+  sense_data.extend([mag_x,mag_y,mag_z])
   
   x,y,z = sense.get_accelerometer_raw().values()
   sense_data.extend([x,y,z])
@@ -30,6 +30,7 @@ def get_sense_data():
 
 ###### Main Program ######
 sense = SenseHat()
+filename = "SenseLog-" + str(datetime.now()) + ".csv"
 
 while True:
   sense_data = get_sense_data()
@@ -37,5 +38,4 @@ while True:
   print(output_string)
 
   with open(filename,"a") as f:
-                  for line in batch_data:
-                      f.write(str(line) + "\n")
+    f.write(output_string + "\n")
