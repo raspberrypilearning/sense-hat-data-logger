@@ -10,15 +10,15 @@ from threading import Thread
 TEMP_H=True
 TEMP_P=False
 HUMIDITY=True
-PRESSURE=False
-ORIENTATION=False
+PRESSURE=True
+ORIENTATION=True
 ACCELERATION=True
 MAG=True
-GYRO=False
-DELAY = 2
-BASENAME = ""
+GYRO=True
+DELAY = 0
+BASENAME = "Fall"
 WRITE_FREQUENCY = 1
-ENABLE_CAMERA = False
+ENABLE_CAMERA = True
 LOG_AT_START = False
 
 
@@ -74,7 +74,7 @@ def get_sense_data():
 
     if MAG:
         mag_x,mag_y,mag_z = sense.get_compass_raw().values()
-        sense_data.append([mag_x,mag_y,mag_z])
+        sense_data.extend([mag_x,mag_y,mag_z])
 
     if ACCELERATION:
         x,y,z = sense.get_accelerometer_raw().values()
@@ -171,4 +171,3 @@ with open(filename,"a") as f:
 
 
 sense.clear()
-
