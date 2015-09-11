@@ -90,9 +90,9 @@ def get_sense_data():
 
 def show_state(logging):
     if logging:
-        sense.show_letter("!",text_colour=[0,255,0])
+        sense.show_letter("!",text_colour=[0,100,0])
     else:
-        sense.show_letter("!",text_colour=[255,0,0])
+        sense.show_letter("!",text_colour=[100,0,0])
 
 def check_input():
     running = True
