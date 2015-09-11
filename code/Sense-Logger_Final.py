@@ -34,9 +34,9 @@ def file_setup(filename):
         header.append("pressure")
     if ORIENTATION:
         header.extend(["pitch","roll","yaw"])
-    if ACCELERATION:
-        header.extend(["mag_x","mag_y","mag_z"])
     if MAG:
+        header.extend(["mag_x","mag_y","mag_z"])
+    if ACCELERATION:
         header.extend(["accel_x","accel_y","accel_z"])
     if GYRO:
         header.extend(["gyro_x","gyro_y","gyro_z"])
