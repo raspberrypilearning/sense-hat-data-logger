@@ -3,7 +3,7 @@ from sense_hat import SenseHat
 from datetime import datetime
 
 ##### Logging Settings #####
-BASENAME = ""
+FILENAME = ""
 WRITE_FREQUENCY = 100
 
 ##### Functions #####
@@ -16,9 +16,7 @@ def file_setup(filename):
 def log_data():
     output_string = ",".join(str(value) for value in sense_data)
     batch_data.append(output_string)
-    print(sense_data)
-    print(output_string)
-
+    
 def get_sense_data():
     sense_data=[]
 
@@ -47,10 +45,10 @@ def get_sense_data():
 sense = SenseHat()
 batch_data= []
 
-if BASENAME == "":
+if FILENAME == "":
     filename = "SenseLog-"+str(datetime.now())+".csv"
 else:
-    filename = BASENAME+"-"+str(datetime.now())+".csv"
+    filename = FILENAME+"-"+str(datetime.now())+".csv"
 
 file_setup(filename)
 
