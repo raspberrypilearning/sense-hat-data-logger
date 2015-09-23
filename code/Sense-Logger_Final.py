@@ -48,28 +48,28 @@ def file_setup(filename):
 ## Function to capture input from the Sense Hat Joystick
 def get_joystick():
     devices = [InputDevice(fn) for fn in list_devices()]
-    for dev in devices: 
+    for dev in devices:
         if dev.name == "Raspberry Pi Sense HAT Joystick":
             return dev
 
 ## Function to collect data from the sense hat and build a string
 def get_sense_data():
     sense_data=[]
-    
+
     if TEMP_H:
         sense_data.append(sense.get_temperature_from_humidity())
 
     if TEMP_P:
         sense_data.append(sense.get_temperature_from_pressure())
-        
+
     if HUMIDITY:
         sense_data.append(sense.get_humidity())
-     
+
     if PRESSURE:
         sense_data.append(sense.get_pressure())
-        
+
     if ORIENTATION:
-        yaw,pitch,roll = sense.get_orientation().values()        
+        yaw,pitch,roll = sense.get_orientation().values()
         sense_data.extend([pitch,roll,yaw])
 
     if MAG:
@@ -83,9 +83,9 @@ def get_sense_data():
     if GYRO:
         gyro_x,gyro_y,gyro_z = sense.get_gyroscope_raw().values()
         sense_data.extend([gyro_x,gyro_y,gyro_z])
-    
+
     sense_data.append(datetime.now())
-     
+
     return sense_data
 
 def show_state(logging):
@@ -106,10 +106,10 @@ def check_input():
                     if ENABLE_CAMERA and camera.recording: camera.stop_recording()
                     running = False
                 if event.code == ecodes.KEY_LEFT:
-                    if ENABLE_CAMERA : 
+                    if ENABLE_CAMERA :
                         camera.start_recording("SenseVid-"+str(datetime.now())+".h264")
                         logging_event = False
-                    
+
 
     return logging_event,running
 
@@ -141,13 +141,13 @@ file_setup(filename)
 
 if DELAY >= 1:
     Thread(target= timed_log).start()
-    
+
 
 if ENABLE_CAMERA: camera = picamera.PiCamera()
 
 while run==True:
     sense_data = get_sense_data()
-    
+
     logging_event,run = check_input()
 
     if logging_event:
@@ -156,7 +156,7 @@ while run==True:
 
     if logging == True and DELAY < 1:
         log_data()
-    
+
     if len(batch_data) >= WRITE_FREQUENCY:
         with open(filename,"a") as f:
             for line in batch_data:

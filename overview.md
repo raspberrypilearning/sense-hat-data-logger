@@ -1,1 +1,1 @@
-In this resource students will make a something do a something so that your something can do something and use something to control the something.
+In this activity you will create a program in Python to collect and record data from the Raspberry Pi Sense-HAT, learn how this is being used as part of the Astro Pi project and capture your own interesting data.
