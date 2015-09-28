@@ -87,6 +87,7 @@ def get_sense_data():
   ```
 
   Your final program should look like this:
+
   ![Complete code](images/code2.png)
 
 1. You can now test you logger by first of all saving it, by pressing **Ctrl+S** and giving you program a name such as `Sense_Logger_v1.py` once saved you can run the program by pressing **F5**. You should see lots of text scrolling past as shown below.
@@ -95,16 +96,16 @@ def get_sense_data():
 
   The highlighted section shows a single line of data bundled together into a list, you should be able to tell which sensor data is which.
 
-  To stop the program running you can press **Ctrl+c** to cancel the execution.
+  To stop the program running you can press **Ctrl+C** to cancel the execution.
 
 ## Writing the data to a file
 
 The program you have produced so far is able to continually check the Sense-HAT sensors and write this data to the screen, however unless you're a very fast reader this is not very helpful.
 
-What would be more useful is to write this data to a CSV file (comma seperated values) which you can examine once your logging program has finished. To do create this file you will need to:
+What would be more useful is to write this data to a CSV file (comma seperated values) which you can examine once your logging program has finished. To create this file you will need to:
   - specify the filename for this file
   - add a header row to the start of the file
-  - convert each list of data into a line in the file
+  - convert each list of data into a line of text for the file
   - every so often write a batch of data out to the file
 
 1. The first thing you need to do is to add 2 lines to your **Settings** section. these are:
@@ -134,20 +135,25 @@ What would be more useful is to write this data to a CSV file (comma seperated v
 
   > 26.7224178314209,25.068750381469727,53.77205276489258,1014.18017578125,3.8002126669234286,306.1720338870328,0.3019065275890227,71.13333892822266,59.19926834106445,39.75812911987305,0.9896639585494995,0.12468399852514267,-0.004147999919950962,-0.0013064055237919092,-0.0006561130285263062,-0.0011542239226400852,2015-09-23 11:53:09.267584
 
-1. Another function you will need is the **file_setup** function which you're going to make create a list of headings that will be written to the file before any data. The function is shown below and needs to be added to your **Functions** section.
+1. Another function you will need is the **file_setup** function which will create a list of headings that will be written to the file before any data. The function is shown below and needs to be added to your **Functions** section.
 
 
   ```python
   def file_setup(filename):
-      header  =["temp_h","temp_p","humidity","pressure","pitch","roll","yaw","mag_x","mag_y","mag_z","accel_x","accel_y","accel_z","gyro_x","gyro_y","gyro_z","timestamp"]
+      header  =["temp_h","temp_p","humidity","pressure",
+      "pitch","roll","yaw",
+      "mag_x","mag_y","mag_z",
+      "accel_x","accel_y","accel_z",
+      "gyro_x","gyro_y","gyro_z",
+      "timestamp"]
 
       with open(filename,"w") as f:
           f.write(",".join(str(value) for value in header)+ "\n")
 ```
 
-  This function is slightly differently to the previous as it needs an input in order to work, in this case an input the has been called `filename`. When the main program calls this function it must also give the function the name of the file to write to. If it where called like this `file_setup("output.csv")` the function whould create `output.csv`
+  This function is slightly different to the previous as it needs an input (or **parameter**) in order to work, in this case the input has been called `filename`. When the main program calls this function it must also give the function the name of the file to write to. If it were called like this `file_setup("output.csv")` the function would create `output.csv`
 
-  The function itself creates a list of header names called header. It then opens a file in write mode (w) which overwrite any previous data and refers to that file as f. whilst the file (f) is open it joins all the list headings together using commas and writes that line to the file.
+  The function itself creates a list of header names called header. It then opens a file in **write** mode (which will overwrites any previous data) and refers to that file as f. whilst the file is open it joins all the list headings together using commas and writes that line to the file.
 
 1. The two functions and the settings you added now need to be used in the main program.
 
@@ -171,16 +177,16 @@ What would be more useful is to write this data to a CSV file (comma seperated v
   file_setup(filename)
 ```
 
-  The first line here creates and empty list that the program will keep adding sense_data lines to until it reaches 50 (or whatever value is set by WRITE_FREQUENCY).
+  The first line here creates an empty list that the program will keep adding sense_data lines to until it reaches 50 (or whatever value is set by WRITE_FREQUENCY).
 
-  The if/else block checks whether a FILENAME has been set, if it hasn't then the default of "SenseLog" is used. The current date and time is added to the filename.
+  The if/else block checks whether a FILENAME has been set, if it hasn't then the default of "SenseLog" is used. The current date and time is also added to the filename.
 
   Finally the **file_setup** functions is called and given the filename that was decided upon in the previous if / else block.
 
 1. The last step is to change some of the logic inside the `while True:` loop.
   - You need to make it collect **sense_data**
   - Then use the **log_data** function to convert the sense_data into csv form and add the the current **batch_data**.
-  - Once the data is logged the program checks whether the size of **batch_data** exceedds the WRITE_FREQUENCY setting, if so the data is written to a file and **batch_data** is reset.
+  - Once the data is logged, the program checks whether the size of **batch_data** exceeds the WRITE_FREQUENCY setting, if so the data is written to a file and **batch_data** is reset.
 
   Your `while True:` loop should be updated to look like this:
 
@@ -206,14 +212,36 @@ What would be more useful is to write this data to a CSV file (comma seperated v
 
   ![Writing to a file](images/run2.png)
 
-  You can stop logging by pressing **Ctrl+c**
+  You can stop logging by pressing **Ctrl+C**
 
-## Starting you datalogger on boot.
-It's quite likely that you will not want to have a screen, keyboard and mouse handy everytime you want to log data. A handy way to avoid this is to have you program run whenever your Raspberry Pi boots up.
-To do this you will first need to open a terminal window like the one below.
+## Starting you data logger on boot.
+It's quite likely that you will not want to have a screen, keyboard and mouse handy every time you want to log data. A handy way to avoid this is to have you program run whenever your Raspberry Pi boots up.
+To do this you will first need to open a terminal window like the one below, and enter the command `sudo leafpad /etc/rc.local`. The `rc.local` script is the last startup script to load as the Raspberry Pi boots. Anything you add to this script will load on boot.
+
+  ![Terminal window](images/terminal.png)
+
+  Once leafpad has loaded you should add two lines like the ones shown here:
+
+  ![rc.local](images/rc_local.png)
+
+  - The first line changes to the directory where your datalogger script is stored.
+  - The second line changes to the `pi` user  and runs the command `python3 Sense-Logger.py`, the `&` symbol makes this command run as a background task and allows the Raspberry Pi to continue with other tasks.
+
+  You will need to update these lines to reflect the name and location of your program.
+
+  The next time your Raspberry Pi boots it should automatically start logging data
 
 ## Collect your data
 The data logger created in this activity will log data from all the sensor as often as it can, there are a number of things you could try next.
-- Conduct an experiment the should involve a change in on of conditions measure and collect data You could:
+- Conduct an experiment the should involve a change in one of conditions measure and collect data You could:
+  - Place you Raspberry Pi in the fridge and record temperature, what happens when you open the door? How quickly does the temperature return to normal.
+  - Drop your Raspberry Pi from a height and track the changes in orientation / acceleration (ensure you protect your Raspberry Pi carefully before dropping it)
+  - Send to near space and explore the changes in temperature / pressure and humidity throughout the flight.
 
 ## What's Next
+There a number of things you might want to consider doing next:
+  - Continue onto [Worksheet 2](worksheet2.md) to develop your datalogger further by adding features:
+    - Using the joystick to start/stop logging
+    - Displaying the state of the logger on the LEDs
+    - Timed logging (every so many seconds)
+  - Use your data logging code to explore conditions on the ISS following our [Sensing Science]() activity.
