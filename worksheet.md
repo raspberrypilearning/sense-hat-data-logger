@@ -54,7 +54,7 @@ def get_sense_data():
 
   The rest of the sensors are a bit more complex as they each give 3 values back, in the lines above you are asking the Sense-HAT for the 3 orientation values (yaw,pitch,roll) and the second line extends the sense_data list by those three values.
 
-  ```python
+    ```python
     mag_x,mag_y,mag_z = sense.get_compass_raw().values()
     sense_data.extend([mag_x,mag_y,mag_z])
 
@@ -68,7 +68,8 @@ def get_sense_data():
     sense_data.append(datetime.now())
 
     return sense_data
-```
+    ```
+
   The final part of the function adds three more sensor values (magnetometer, accelorometer and gyroscope), and then the current time. The final line of the function **returns** (or sends) the **sense_data** list to where the main program will ask for it.
 
 1. Next you'll need to add some lines to your **Main Program** Section, this will need to do 2 things:
@@ -78,12 +79,12 @@ def get_sense_data():
   Add the following code to your **Main Program** section
 
   ```python
-sense = SenseHat()
+  sense = SenseHat()
 
-while True:
+  while True:
     sense_data = get_sense_data()
     print(sense_data)
-```
+  ```
 
   Your final program should look like this:
   ![Complete code](images/code2.png)
@@ -101,17 +102,17 @@ while True:
 The program you have produced so far is able to continually check the Sense-HAT sensors and write this data to the screen, however unless you're a very fast reader this is not very helpful.
 
 What would be more useful is to write this data to a CSV file (comma seperated values) which you can examine once your logging program has finished. To do create this file you will need to:
-- specify the filename for this file
-- add a header row to the start of the file
-- convert each list of data into a line in the file
-- every so often write a batch of data out to the file
+  - specify the filename for this file
+  - add a header row to the start of the file
+  - convert each list of data into a line in the file
+  - every so often write a batch of data out to the file
 
 1. The first thing you need to do is to add 2 lines to your **Settings** section. these are:
 
   ```python
-FILENAME = ""
-WRITE_FREQUENCY = 50
-```
+  FILENAME = ""
+  WRITE_FREQUENCY = 50
+  ```
 
   The first line here will be used to choose an filename for the outputted data and the second will set how often the program will write data out to the file. In this case it will collect 50 lines of data and then add these to the file in one go.
 
@@ -120,9 +121,9 @@ WRITE_FREQUENCY = 50
   Add the following code after the **Functions** heading and before the **get_sense_data** function.
 
   ```python
-def log_data():
-    output_string = ",".join(str(value) for value in sense_data)
-    batch_data.append(output_string)
+  def log_data():
+      output_string = ",".join(str(value) for value in sense_data)
+      batch_data.append(output_string)
 ```
 
   The first line takes each value in the **sense_data** list and converts them to **strings** (text) and the joins them together with the `,` symbol. So a line like this:
@@ -137,11 +138,11 @@ def log_data():
 
 
   ```python
-def file_setup(filename):
-    header  =["temp_h","temp_p","humidity","pressure","pitch","roll","yaw","mag_x","mag_y","mag_z","accel_x","accel_y","accel_z","gyro_x","gyro_y","gyro_z","timestamp"]
+  def file_setup(filename):
+      header  =["temp_h","temp_p","humidity","pressure","pitch","roll","yaw","mag_x","mag_y","mag_z","accel_x","accel_y","accel_z","gyro_x","gyro_y","gyro_z","timestamp"]
 
-    with open(filename,"w") as f:
-        f.write(",".join(str(value) for value in header)+ "\n")
+      with open(filename,"w") as f:
+          f.write(",".join(str(value) for value in header)+ "\n")
 ```
 
   This function is slightly differently to the previous as it needs an input in order to work, in this case an input the has been called `filename`. When the main program calls this function it must also give the function the name of the file to write to. If it where called like this `file_setup("output.csv")` the function whould create `output.csv`
@@ -153,21 +154,21 @@ def file_setup(filename):
   Straight after the lines that read:
 
   ```python
-##### Main Program #####
-sense = SenseHat()
+  ##### Main Program #####
+  sense = SenseHat()
 ```
 
   add the following:
 
   ```python
-batch_data= []
+  batch_data= []
 
-if FLIENAME == "":
-    filename = "SenseLog-"+str(datetime.now())+".csv"
-else:
-    filename = FILEAME+"-"+str(datetime.now())+".csv"
+  if FLIENAME == "":
+      filename = "SenseLog-"+str(datetime.now())+".csv"
+  else:
+      filename = FILEAME+"-"+str(datetime.now())+".csv"
 
-file_setup(filename)
+  file_setup(filename)
 ```
 
   The first line here creates and empty list that the program will keep adding sense_data lines to until it reaches 50 (or whatever value is set by WRITE_FREQUENCY).
@@ -184,17 +185,17 @@ file_setup(filename)
   Your `while True:` loop should be updated to look like this:
 
   ```python
-while True:
-    sense_data = get_sense_data()
-    log_data()
+  while True:
+      sense_data = get_sense_data()
+      log_data()
 
-    if len(batch_data) >= WRITE_FREQUENCY:
-        print("Writing to file..")
-        with open(filename,"a") as f:
-            for line in batch_data:
-                f.write(line + "\n")
-            batch_data = []
-```
+      if len(batch_data) >= WRITE_FREQUENCY:
+          print("Writing to file..")
+          with open(filename,"a") as f:
+              for line in batch_data:
+                  f.write(line + "\n")
+              batch_data = []
+  ```
 
   - The line `print("Writing to file..")` is optional, but it will show whenever data is being written.
   - The line `with open(filename,"a") as f:` opens the file in **append** mode which adds the data at the end point of the file rather than overwriting.
