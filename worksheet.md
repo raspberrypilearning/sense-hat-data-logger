@@ -75,7 +75,7 @@ def get_sense_data():
   - create a sense object, which represents the Sense-HAT
   - repeatedly **get_sense_data** from the sensors and display it.
 
-  Add the following code to your **Main rogram**
+  Add the following code to your **Main Program** section
 
   ```python
 sense = SenseHat()
