@@ -10,29 +10,29 @@ In preparation for this resource, attach your Sense HAT to your Raspberry Pi and
 
 1. First we'll write a short script to get data from the Sense-HAT and output it to the screen, using the sensors we can capture the following data:
 
-- [Temperature](https://www.raspberrypi.org/learning/astro-pi-guide/sensors/temperature.md) (This can be read by two different sensors)
-- [Humidity](https://www.raspberrypi.org/learning/astro-pi-guide/sensors/humidity.md)
-- [Pressure](https://www.raspberrypi.org/learning/astro-pi-guide/sensors/pressure.md)
-- [Movement](https://www.raspberrypi.org/learning/astro-pi-guide/sensors/movement.md) (This is actually made up of 12 different sensor readings)
+  - [Temperature](https://www.raspberrypi.org/learning/astro-pi-guide/sensors/temperature.md) (This can be read by two different sensors)
+  - [Humidity](https://www.raspberrypi.org/learning/astro-pi-guide/sensors/humidity.md)
+  - [Pressure](https://www.raspberrypi.org/learning/astro-pi-guide/sensors/pressure.md)
+  - [Movement](https://www.raspberrypi.org/learning/astro-pi-guide/sensors/movement.md) (This is actually made up of 12 different sensor readings)
 
-To begin your script you need to boot you Raspberry Pi into desktop mode and run Idle for Python 3 from the menu. You can find it under the *Programming* section.
+  To begin your script you need to boot you Raspberry Pi into desktop mode and run Idle for Python 3 from the menu. You can find it under the *Programming* section.
 
-Once Idle has loaded you will need to select **File** and then **New File** which will load a separate window in which you can write your code.
+  Once Idle has loaded you will need to select **File** and then **New File** which will load a separate window in which you can write your code.
 
-![Ilde3](images/idle3.png)
+  ![Ilde3](images/idle3.png)
 
-The window on the right is where you should write your code and on the left is where the code will run. Let's begin by writing a program to collect data from the Sense-HAT sensors.
+  The window on the right is where you should write your code and on the left is where the code will run. Let's begin by writing a program to collect data from the Sense-HAT sensors.
 
-2. In you right hand window add the following lines of python code, the lines starting with a `#` symbol are called **comments** and are ignored by the computer. You should use comments here to break you code into 4 sections, this will help make it easier to build your program as it gets more complex.
+1. In you right hand window add the following lines of python code, the lines starting with a `#` symbol are called **comments** and are ignored by the computer. You should use comments here to break you code into 4 sections, this will help make it easier to build your program as it gets more complex.
 
-![Code Snippet 1](images/code1.png)
+  ![Code Snippet 1](images/code1.png)
 
   - The first section **Libraries** is where you will import code that will give your program extra abilities. The line `from sense_hat import SenseHat` allows your program to use the Sense-HAT hardware.
   - The section headed **Logging Settings** is where you will be able to control different features of your logger program.
   - The third section **Functions** will contain short "chunks" of reusable code that do a specific job such as writing the current data to a file.
   - The final section **Main Program** is the part of you code which uses each of the functions in the right sequence to run then whole program.
 
-3. In order to get a data from the Sense-HAT you will need to write a function called **get_sense_data** which will check each sensor in turn and store the sensor data in a list. The function should be added to the **Functions** section.
+1. In order to get a data from the Sense-HAT you will need to write a function called **get_sense_data** which will check each sensor in turn and store the sensor data in a list. The function should be added to the **Functions** section.
 
 ```python
 def get_sense_data():
