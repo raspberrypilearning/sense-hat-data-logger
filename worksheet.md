@@ -232,8 +232,7 @@ To do this you will first need to open a terminal window like the one below, and
   The next time your Raspberry Pi boots it should automatically start logging data
 
 ## Collect your data
-The data logger created in this activity will log data from all the sensor as often as it can, there are a number of things you could try next.
-- Conduct an experiment the should involve a change in one of conditions measure and collect data You could:
+Conduct an experiment the should involve a change in one of conditions measure and collect data You could:
   - Place you Raspberry Pi in the fridge and record temperature, what happens when you open the door? How quickly does the temperature return to normal.
   - Drop your Raspberry Pi from a height and track the changes in orientation / acceleration (ensure you protect your Raspberry Pi carefully before dropping it)
   - Send to near space and explore the changes in temperature / pressure and humidity throughout the flight.
