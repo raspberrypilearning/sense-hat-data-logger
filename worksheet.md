@@ -240,7 +240,6 @@ Conduct an experiment the should involve a change in one of conditions measure a
 ## What's Next
 There a number of things you might want to consider doing next:
   - Continue onto [Worksheet 2](worksheet2.md) to develop your datalogger further by adding features:
-    - Using the joystick to start/stop logging
-    - Displaying the state of the logger on the LEDs
+    - Choosing which pieces of data to log
     - Timed logging (every so many seconds)
   - Use your data logging code to explore conditions on the ISS following our [Sensing Science]() activity.

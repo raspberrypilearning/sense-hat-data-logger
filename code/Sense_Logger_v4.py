@@ -1,6 +1,8 @@
 ##### Libraries #####
-from sense_hat import SenseHat
 from datetime import datetime
+from sense_hat import SenseHat
+from time import sleep
+from threading import Thread
 
 ##### Logging Settings #####
 FILENAME = ""
@@ -78,6 +80,13 @@ def get_sense_data():
 
     return sense_data
 
+def timed_log():
+    log_data()
+    time.sleep(DELAY)
+
+
+
+
 ##### Main Program #####
 sense = SenseHat()
 batch_data= []
@@ -89,10 +98,15 @@ else:
 
 file_setup(filename)
 
+if DELAY > 0:
+    Thread(target= timed_log).start()
+
 while True:
     sense_data = get_sense_data()
-    log_data()
 
+    if DELAY == 0:
+        log_data()
+        
     if len(batch_data) >= WRITE_FREQUENCY:
         print("Writing to file..")
         with open(filename,"a") as f:

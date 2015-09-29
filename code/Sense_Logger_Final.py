@@ -139,7 +139,7 @@ else:
 
 file_setup(filename)
 
-if DELAY >= 1:
+if DELAY > 0:
     Thread(target= timed_log).start()
 
 
@@ -154,7 +154,7 @@ while run==True:
         logging = not(logging)
         show_state(logging)
 
-    if logging == True and DELAY < 1:
+    if logging == True and DELAY == 0:
         log_data()
 
     if len(batch_data) >= WRITE_FREQUENCY:
