@@ -144,3 +144,82 @@ Sometimes you may not want to log data from every sensor on the Sense-HAT depend
     Now when you run your code you should be able to switch the collection of different pieces of data **on/off** by changing the settings at the top to **True/Flase**
 
     ## Logging data at a fixed interval
+    Currently the data logger you have written will collect data as fast as it can (many times a second) which is great for many situations, particularly when the environment is changing rapidly. However, sometimes you may want to collect data less frequently, when change is more gradual. To make this work you will need to develop you code in a few ways.
+
+    - Add the some libraries to your code to enable some extra functionality.
+    - Include a setting to set the interval between logging events
+    - Write a function which will be run at the start of the program (before the loop) that logs data and then waits for the specified interval.
+    - Amend part of the code inside the while loop so that the loop skips logging there if an interval has been set.
+
+    1. The first step is to import the two library elements at the top of you code:
+      - The **sleep** function from the **time** library allows you code to pause between lines of code.
+      - A **Thread**, from the **threading** library allows a seperate chunk of code to be run at the same time as another. We need one thread to continually check the sensors, and another to log the data every so many seconds.
+
+      Your import section should now look like this:
+
+      ```python3
+      from datetime import datetime
+      from sense_hat import SenseHat
+      from time import sleep
+      from threading import Thread
+      ```
+
+    1. With these libraries imported you can now add a setting to your setting section which will set the DELAY between logging. If you set it to 0 the program will behave as it has so far and log as often as possible. Anything higher than 0 will use a seperate **timed_log** function which you'll write in the set step.
+
+    Add the line `DELAY=5` to you settings section for a 5 second delay, as shown below.
+
+    ```python3
+    ##### Logging Settings #####
+    FILENAME = ""
+    WRITE_FREQUENCY = 100
+    TEMP_H=True
+    TEMP_P=False
+    HUMIDITY=True
+    PRESSURE=True
+    ORIENTATION=True
+    ACCELERATION=True
+    MAG=True
+    GYRO=True
+    DELAY=5
+    ```
+
+    2. You'll now need to add a function for handling the **timed_log**, this will run in the background and call **log_data** every 5 seconds. Add the following definition to your **functions** section.
+
+    ```python3
+    def timed_log():
+        log_data()
+        time.sleep(DELAY)
+    ```
+
+    3. Now that your imports, settings, and functions have been added you'll now need to adjust you **Main Program** to include them.
+
+    First add these two lines above the `while True:` line:
+
+    ```python3
+    if DELAY > 0:
+        Thread(target= timed_log).start()
+    ```
+
+    This checks whether a **DELAY** has been set and if so starts a seperate **Thread** which launches the **timed_log** in the background.
+
+    4. The final step is to adjust a line inside the `while True:` loop so that if a delay is set then the loop doesn't log any data and simply handles the writing out of data to the flie. Find the line that says `log_data` and replace it with:
+
+    ```python3
+    if DELAY == 0:
+      log_data()
+    ```
+
+    This only logs data inside the while loop if the value of DELAY is 0.
+
+    With these changes made you should be able specify the delay between logging events and log data at whatever interval you want. You can see the full code [here](code/Sense_Logger_v4.py)
+
+## Collect your data
+  Use you python code to record data over a long period of time at an interval of your choice, such as:
+    - Measure the temperature, humidity and pressure of a room in your house every 5 mins (300 seconds) over the period of a week.
+    - Monitoring conditions for plant growth, inside a propagator or greenhouse measure conditions which may impact on the health of the plants.
+
+##What's next
+  - Continue onto [Worksheet 3](worksheet2.md) to develop your datalogger further by adding features:
+    - Using the joystick to start/stop logging
+    - Displaying the state of the logger on the LEDs
+  - Use your data logging code to explore conditions on the ISS following our [Sensing Science]() activity.
