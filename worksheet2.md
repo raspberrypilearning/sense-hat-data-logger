@@ -219,7 +219,4 @@ Sometimes you may not want to log data from every sensor on the Sense-HAT depend
     - Monitoring conditions for plant growth, inside a propagator or greenhouse measure conditions which may impact on the health of the plants.
 
 ##What's next
-  - Continue onto [Worksheet 3](worksheet2.md) to develop your datalogger further by adding features:
-    - Using the joystick to start/stop logging
-    - Displaying the state of the logger on the LEDs
   - Use your data logging code to explore conditions on the ISS following our [Sensing Science]() activity.
