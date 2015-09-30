@@ -1,8 +1,19 @@
-# Example Resource
+# Sense-HAT Datalogger
 
 ![](cover.png)
 
-Short description of the resource
+In this activity, you will learn how to use the Sense-HAT hardware to build a data logging device that can capture a range of information about it's immediate environment.
+
+The Python program you write will mimic the function of the a program being run by British ESA Astronaut Tim Peake who as part of the Astro Pi project. Whilst onboard the International Space Station, Tim will be using the same hardware to log enviromental condition and motion. 
+
+Once you've created you data logger you will be able to use it to conduct your own experiements and record data. Things we've tried include:
+- Dropping the data logger from a 4 storey building
+- Putting our data logger in a fridge and observing temperature changes
+- Sending the hardware to the edge of space with a helium balloon.
+
+## The worksheet
+
+- Go to the [worksheet](worksheet.md)
 
 ## Licence
 
