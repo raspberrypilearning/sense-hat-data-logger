@@ -1,4 +1,4 @@
-By creating a Sense-HAT datalogger with your Raspberry Pi you will learn:
+By creating a Sense HAT datalogger with your Raspberry Pi you will learn:
 
 - How to collect data from multiple sensors and build it into a list structure.
 - To write and append data to a text file from within a Python program.
