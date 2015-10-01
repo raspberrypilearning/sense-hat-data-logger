@@ -4,6 +4,6 @@ The Python program you write will mimic the function of the a program being run 
 
 Once you've created you data logger you will be able to use it to conduct your own experiements and record data. Things we've tried include:
 
-- Dropping the data logger from a 4 storey building
+- Dropping the data logger from a four-storey building
 - Putting our data logger in a fridge and observing temperature changes
 - Sending the hardware to the edge of space with a helium balloon.
