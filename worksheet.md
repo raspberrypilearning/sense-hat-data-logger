@@ -1,12 +1,12 @@
-# Building a Sense-HAT datalogger
+# Sense HAT Data Logger
 
 During the Astro Pi mission a pair of Raspberry Pi with Sense HATs attached will be capturing and logging a range of data about life on board the International Space Station.
 
-In this activity you will use a Raspberry Pi, Sense hat and some Python Code to create your own datalogging tool, which you can use to capture interesting data and perform experiments.
+In this activity you will use a Raspberry Pi, a Sense HAT and some Python Code to create your own datalogging tool, which you can use to capture interesting data and perform experiments.
 
 In preparation for this resource, attach your Sense HAT to your Raspberry Pi and install the software by following this [guide](https://www.raspberrypi.org/learning/astro-pi-guide/assemble.md).
 
-## Getting data from the Sense-HAT
+## Getting data from the Sense HAT
 
 1. First we'll write a short script to get data from the Sense-HAT and output it to the screen, using the sensors we can capture the following data:
 
@@ -32,7 +32,7 @@ In preparation for this resource, attach your Sense HAT to your Raspberry Pi and
   - The third section **Functions** will contain short "chunks" of reusable code that do a specific job such as writing the current data to a file.
   - The final section **Main Program** is the part of you code which uses each of the functions in the right sequence to run then whole program.
 
-1. In order to get a data from the Sense-HAT you will need to write a function called **get_sense_data** which will check each sensor in turn and store the sensor data in a list. The function should be added to the **Functions** section.
+1. In order to get a data from the Sense HAT you will need to write a function called **get_sense_data** which will check each sensor in turn and store the sensor data in a list. The function should be added to the **Functions** section.
 
   ```python
 def get_sense_data():
@@ -52,7 +52,7 @@ def get_sense_data():
     sense_data.extend([pitch,roll,yaw])
 ```
 
-  The rest of the sensors are a bit more complex as they each give 3 values back, in the lines above you are asking the Sense-HAT for the 3 orientation values (yaw,pitch,roll) and the second line extends the sense_data list by those three values.
+  The rest of the sensors are a bit more complex as they each give 3 values back, in the lines above you are asking the Sense-HAT for the 3 orientation values (yaw, pitch, roll) and the second line extends the sense_data list by those three values.
 
     ```python
     mag_x,mag_y,mag_z = sense.get_compass_raw().values()
@@ -69,8 +69,7 @@ def get_sense_data():
 
     return sense_data
     ```
-
-  The final part of the function adds three more sensor values (magnetometer, accelorometer and gyroscope), and then the current time. The final line of the function **returns** (or sends) the **sense_data** list to where the main program will ask for it.
+  The final part of the function adds three more sensor values (magnetometer, accelorometer and gyroscope), and then    the current time. The final line of the function **returns** (or sends) the **sense_data** list to where the main     program will ask for it.
 
 1. Next you'll need to add some lines to your **Main Program** Section, this will need to do 2 things:
   - create a sense object, which represents the Sense-HAT
