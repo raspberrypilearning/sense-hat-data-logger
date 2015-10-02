@@ -1,38 +1,38 @@
 # Sense HAT Data Logger
 
-During the Astro Pi mission a pair of Raspberry Pi with Sense HATs attached will be capturing and logging a range of data about life on board the International Space Station.
+During the Astro Pi mission a pair of Raspberry Pis with Sense HATs attached will be capturing and logging a range of data about life on board the International Space Station.
 
-In this activity you will use a Raspberry Pi, a Sense HAT and some Python Code to create your own datalogging tool, which you can use to capture interesting data and perform experiments.
+In this activity you will use a Raspberry Pi, a Sense HAT and some Python code to create your own datalogging tool, which you can use to capture interesting data and perform experiments.
 
 In preparation for this resource, attach your Sense HAT to your Raspberry Pi and install the software by following this [guide](https://www.raspberrypi.org/learning/astro-pi-guide/assemble.md).
 
 ## Getting data from the Sense HAT
 
-1. First we'll write a short script to get data from the Sense-HAT and output it to the screen, using the sensors we can capture the following data:
+1. First we'll write a short script to get data from the Sense HAT and output it to the screen, using the sensors we can capture the following data:
 
   - [Temperature](https://www.raspberrypi.org/learning/astro-pi-guide/sensors/temperature.md) (This can be read by two different sensors)
   - [Humidity](https://www.raspberrypi.org/learning/astro-pi-guide/sensors/humidity.md)
   - [Pressure](https://www.raspberrypi.org/learning/astro-pi-guide/sensors/pressure.md)
-  - [Movement](https://www.raspberrypi.org/learning/astro-pi-guide/sensors/movement.md) (This is actually made up of 12 different sensor readings)
+  - [Movement](https://www.raspberrypi.org/learning/astro-pi-guide/sensors/movement.md) (This is actually made up of twelve different sensor readings)
 
-  To begin your script you need to boot you Raspberry Pi into desktop mode and run Idle for Python 3 from the menu. You can find it under the *Programming* section.
+  To begin your script you need to boot you Raspberry Pi into desktop mode and run Idle for Python 3 from the programming section of the menu. 
 
   Once Idle has loaded you will need to select **File** and then **New File** which will load a separate window in which you can write your code.
 
   ![Ilde3](images/idle3.png)
 
-  The window on the right is where you should write your code and on the left is where the code will run. Let's begin by writing a program to collect data from the Sense-HAT sensors.
+  The window on the right is where you should write your code and on the left is where the code will run. Let's begin by writing a program to collect data from the Sense HAT sensors.
 
-1. In you right hand window add the following lines of python code, the lines starting with a `#` symbol are called **comments** and are ignored by the computer. You should use comments here to break you code into 4 sections, this will help make it easier to build your program as it gets more complex.
+1. In you right hand window, add the following lines of python code. The lines starting with a `#` symbol are called **comments** and are ignored by the computer. You should use comments here to break you code into four sections, which will make it easier to build your program as it gets more complex.
 
   ![Code Snippet 1](images/code1.png)
 
-  - The first section **Libraries** is where you will import code that will give your program extra abilities. The line `from sense_hat import SenseHat` allows your program to use the Sense-HAT hardware.
+  - The first section, **Libraries**, is where you will import code that will give your program extra abilities. The line `from sense_hat import SenseHat` allows your program to use the Sense-HAT hardware.
   - The section headed **Logging Settings** is where you will be able to control different features of your logger program.
-  - The third section **Functions** will contain short "chunks" of reusable code that do a specific job such as writing the current data to a file.
-  - The final section **Main Program** is the part of you code which uses each of the functions in the right sequence to run then whole program.
+  - The third section, **Functions**, will contain short "chunks" of reusable code that do a specific job such as writing the current data to a file.
+  - The final section, **Main Program**, is the part of your code which uses each of the functions in the right sequence to run the whole program.
 
-1. In order to get a data from the Sense HAT you will need to write a function called **get_sense_data** which will check each sensor in turn and store the sensor data in a list. The function should be added to the **Functions** section.
+1. In order to get data from the Sense HAT you will need to write a function called **get_sense_data** which will check each sensor in turn and store the sensor data in a list. The function should be added to the **Functions** section.
 
   ```python
 def get_sense_data():
@@ -45,7 +45,7 @@ def get_sense_data():
 ```
   The first line defines your function name, and the second sets up an empty **list** structure into which you will add your collected data.
 
-  The next 4 lines get data from some of the sensors and add them (append) to the **sense_data** list.
+  The next four lines get data from some of the sensors and add them (append) to the **sense_data** list.
 
   ```python
     yaw,pitch,roll = sense.get_orientation().values()
