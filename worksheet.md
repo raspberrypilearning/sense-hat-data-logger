@@ -15,13 +15,13 @@ In preparation for this resource, attach your Sense HAT to your Raspberry Pi and
   - [Pressure](https://www.raspberrypi.org/learning/astro-pi-guide/sensors/pressure.md)
   - [Movement](https://www.raspberrypi.org/learning/astro-pi-guide/sensors/movement.md) (This is actually made up of twelve different sensor readings)
 
-  To begin your script you need to boot you Raspberry Pi into desktop mode and run Idle for Python 3 from the programming section of the menu. 
+  To begin your script you need to boot your Raspberry Pi into desktop mode and run Idle for Python 3 from the programming section of the menu. 
 
   Once Idle has loaded you will need to select **File** and then **New File** which will load a separate window in which you can write your code.
 
   ![Ilde3](images/idle3.png)
 
-  The window on the right is where you should write your code and on the left is where the code will run. Let's begin by writing a program to collect data from the Sense HAT sensors.
+  The window on the right of this image is where you should write your code and the one on the left is where the code will run. Let's begin by writing a program to collect data from the Sense HAT sensors.
 
 1. In your right hand window, add the following lines of python code. The lines starting with a `#` symbol are **comments** and are ignored by the computer. You should use comments here to break you code into four sections, which will make it easier to build your program as it gets more complex.
 
@@ -45,7 +45,7 @@ def get_sense_data():
 ```
   The first line defines your function name, and the second sets up an empty **list** structure into which you will add your collected data.
 
-  The next four lines get data from some of the sensors and add (append) them to the **sense_data** list.
+  The next four lines get data from some of the sensors and adds (or appends) them to the **sense_data** list.
 
   ```python
     yaw,pitch,roll = sense.get_orientation().values()
@@ -69,13 +69,13 @@ def get_sense_data():
 
     return sense_data
     ```
-  The final part of the function adds three more sensor values (magnetometer, accelorometer and gyroscope), and then    the current time. The final line of the function **returns** (or sends) the **sense_data** list to where the main program will ask for it.
+  The final part of the function adds three more sensor values (magnetometer, accelorometer and gyroscope), and then the current time. The final line of the function **returns** (or sends) the **sense_data** list to where the main program will ask for it.
 
-1. Next you'll need to add some lines to your **Main Program** Section, this will need to do 2 things:
+1. Next you'll need to add some lines to your **Main Program** Section, this will need to do two things:
   - create a sense object, which represents the Sense-HAT
-  - repeatedly **get_sense_data** from the sensors and display it.
+  - repeatedly **get_sense_data** from the sensors and display it
 
-  Add the following code to your **Main Program** section
+  Add the following code to your **Main Program** section:
 
   ```python
   sense = SenseHat()
@@ -99,22 +99,22 @@ def get_sense_data():
 
 ## Writing the data to a file
 
-The program you have produced so far is able to continually check the Sense-HAT sensors and write this data to the screen, however unless you're a very fast reader this is not very helpful.
+The program you have produced so far is able to continually check the Sense HAT sensors and write this data to the screen, however, unless you're a very fast reader this is not very helpful.
 
-What would be more useful is to write this data to a CSV file (comma seperated values) which you can examine once your logging program has finished. To create this file you will need to:
+What would be more useful would be to write this data to a CSV (comma separated values) file, which you can examine once your logging program has finished. To create this file you will need to do the following:
   - specify the filename for this file
   - add a header row to the start of the file
   - convert each list of data into a line of text for the file
-  - every so often write a batch of data out to the file
+  - periodically write a batch of data out to the file
 
-1. The first thing you need to do is to add 2 lines to your **Settings** section. these are:
+1. The first thing you need to do is to add 2 lines to your **Settings** section. These are:
 
   ```python
   FILENAME = ""
   WRITE_FREQUENCY = 50
   ```
 
-  The first line here will be used to choose an filename for the outputted data and the second will set how often the program will write data out to the file. In this case it will collect 50 lines of data and then add these to the file in one go.
+  The first line here will be used to choose an filename for the data output, and the second will set how often the program will write data out to the file. In this case it will collect 50 lines of data and then add these to the file in one go.
 
 1. Next you will need to add a **log_data** function, which will convert the **sense_data** to a line of comma seperated values ready to be written to the file. The line of text will be added to a list called **batch data**, which will store the data until it is written to the file.
 
