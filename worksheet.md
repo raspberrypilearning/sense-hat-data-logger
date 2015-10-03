@@ -231,13 +231,12 @@ To do this you will first need to open a terminal window like the one below, and
   The next time your Raspberry Pi boots it should automatically start logging data
 
 ## Collect your data
-Conduct an experiment the should involve a change in one of conditions measure and collect data You could:
-  - Place you Raspberry Pi in the fridge and record temperature, what happens when you open the door? How quickly does the temperature return to normal.
-  - Drop your Raspberry Pi from a height and track the changes in orientation / acceleration (ensure you protect your Raspberry Pi carefully before dropping it)
-  - Send to near space and explore the changes in temperature / pressure and humidity throughout the flight.
+Conduct an experiment involving a change in one of conditions in order to measure and collect data. You could:
+  - Place your Raspberry Pi in the fridge and record the ambient temperature. What happens when you open the door? How quickly does the temperature inside the fridge return to normal?
+  - Drop your Raspberry Pi from a height and track the changes in orientation and acceleration (ensure you protect your Raspberry Pi carefully before dropping it)
+  - Send your Raspberry Pi high into the atmosphere using a high-altitude balloon and explore the changes in temperature, pressure, and humidity throughout the flight.
 
 ## What's Next
-There a number of things you might want to consider doing next:
   - Continue onto [Worksheet 2](worksheet2.md) to develop your datalogger further by adding features:
     - Choosing which pieces of data to log
     - Timed logging (every so many seconds)
