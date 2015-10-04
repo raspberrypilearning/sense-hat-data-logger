@@ -69,7 +69,7 @@ def get_sense_data():
 
     return sense_data
     ```
-  The final part of the function adds three more sensor values (magnetometer, accelorometer and gyroscope), and then the current time. The final line of the function **returns** (or sends) the **sense_data** list to where the main program will ask for it.
+  The final part of the function adds three more sensor values (magnetometer, accelorometer, and gyroscope), and then the current time. The final line of the function **returns** (or sends) the **sense_data** list to where the main program will ask for it.
 
 1. Next you'll need to add some lines to your **Main Program** Section, this will need to do two things:
   - create a sense object, which represents the Sense-HAT
