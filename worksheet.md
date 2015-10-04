@@ -213,13 +213,13 @@ What would be more useful would be to write this data to a CSV (comma separated 
 
   You can stop logging by pressing **Ctrl+C**
 
-## Starting you data logger on boot.
+## Starting your data logger on boot.
 It's quite likely that you will not want to have a screen, keyboard and mouse handy every time you want to log data. A handy way to avoid this is to have you program run whenever your Raspberry Pi boots up.
 To do this you will first need to open a terminal window like the one below, and enter the command `sudo leafpad /etc/rc.local`. The `rc.local` script is the last startup script to load as the Raspberry Pi boots. Anything you add to this script will load on boot.
 
   ![Terminal window](images/terminal.png)
 
-  Once leafpad has loaded you should add two lines like the ones shown here:
+  Once Leafpad has loaded, you should add two lines like the ones shown here:
 
   ![rc.local](images/rc_local.png)
 
