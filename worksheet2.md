@@ -187,7 +187,7 @@ Currently the data logger you have written will collect data as fast as it can (
         time.sleep(DELAY)
     ```
 
-3. Now that your imports, settings, and functions have been added you'll now need to adjust you **Main Program** to include them.
+3. Now that your imports, settings, and functions have been added you'll now need to adjust your main program to include them.
 
   First add these two lines above the `while True:` line:
 
@@ -196,9 +196,9 @@ Currently the data logger you have written will collect data as fast as it can (
       Thread(target= timed_log).start()
   ```
 
-  This checks whether a **DELAY** has been set and, if so, starts a seperate **Thread** which launches the **timed_log** in the background.
+  This checks whether a delay has been set and, if so, starts a seperate thread which launches the `timed_log` in the background.
 
-4. The final step is to adjust a line inside the `while True:` loop so that if a delay is set then the loop doesn't log any data and simply handles the writing out of data to the flie. Find the line that says `log_data` and replace it with:
+4. The final step is to adjust a line inside the `while True:` loop so that if a delay is set then the loop doesn't log any data and simply handles the writing out of data to the file. Find the line that says `log_data` and replace it with:
 
     ```python3
     if DELAY == 0:
