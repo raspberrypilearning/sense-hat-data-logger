@@ -147,22 +147,22 @@ Currently the data logger you have written will collect data as fast as it can (
   - Write a function which will be run at the start of the program, before the loop, to log data and then wait for the specified interval.
   - Amend part of the code inside the `while` loop so that the loop skips logging there if an interval has been set.
 
-1. The first step is to import the two library elements at the top of you code:
+1. The first step is to import the two library elements at the top of your code:
   - The **sleep** function from the **time** library allows you code to pause between lines of code.
   - A **Thread**, from the **threading** library allows a seperate chunk of code to be run at the same time as another. We need one thread to continually check the sensors, and another to log the data every so many seconds.
 
-Your import section should now look like this:
+  Your import section should now look like this:
 
-  ```python3
-  from datetime import datetime
-  from sense_hat import SenseHat
-  from time import sleep
-  from threading import Thread
-  ```
+    ```python3
+    from datetime import datetime
+    from sense_hat import SenseHat
+    from time import sleep
+    from threading import Thread
+    ```
 
-1. With these libraries imported you can now add a setting to your setting section which will set the DELAY between logging. If you set it to 0 the program will behave as it has so far and log as often as possible. Anything higher than 0 will use a seperate `timed_log` function which you'll write in the set step.
+1. With these libraries imported you can now add a setting to your setting section which will set the DELAY between logging. If you set it to zero the program will behave as it has so far and log as often as possible. Anything higher than zero will use a seperate `timed_log` function which you'll write in the set step.
 
-Add the line `DELAY=5` to you settings section for a 5 second delay, as shown below.
+Add the line `DELAY=5` to you settings section for a five second delay, as shown below.
 
     ```python3
     ##### Logging Settings #####
@@ -189,30 +189,31 @@ Add the line `DELAY=5` to you settings section for a 5 second delay, as shown be
 
 3. Now that your imports, settings, and functions have been added you'll now need to adjust you **Main Program** to include them.
 
-    First add these two lines above the `while True:` line:
+  First add these two lines above the `while True:` line:
 
-    ```python3
-    if DELAY > 0:
-        Thread(target= timed_log).start()
-    ```
+  ```python3
+  if DELAY > 0:
+      Thread(target= timed_log).start()
+  ```
 
-    This checks whether a **DELAY** has been set and if so starts a seperate **Thread** which launches the **timed_log** in the background.
+  This checks whether a **DELAY** has been set and, if so, starts a seperate **Thread** which launches the **timed_log** in the background.
 
-    4. The final step is to adjust a line inside the `while True:` loop so that if a delay is set then the loop doesn't log any data and simply handles the writing out of data to the flie. Find the line that says `log_data` and replace it with:
+4. The final step is to adjust a line inside the `while True:` loop so that if a delay is set then the loop doesn't log any data and simply handles the writing out of data to the flie. Find the line that says `log_data` and replace it with:
 
     ```python3
     if DELAY == 0:
       log_data()
     ```
 
-    This only logs data inside the while loop if the value of DELAY is 0.
+  This only logs data inside the while loop if the value of DELAY is 0.
 
-    With these changes made you should be able specify the delay between logging events and log data at whatever interval you want. You can see the full code [here](code/Sense_Logger_v4.py)
+  With these changes made you should be able specify the delay between logging events and log data at whatever interval you want. You can see the full code [here](code/Sense_Logger_v4.py)
 
 ## Collect your data
-  Use your Python code to record data over a long period of time at an interval of your choice, such as:
-    - Measure the temperature, humidity and pressure of a room in your house every five minutes (i.e. every 300 seconds) over the period of a week.
-    - Monitoring conditions for plant growth inside a propagator or greenhouse: measure conditions which may impact on the health of the plants.
+
+Use your Python code to record data over a long period of time at an interval of your choice, such as:
+- Measure the temperature, humidity and pressure of a room in your house every five minutes (i.e. every 300 seconds) over the period of a week.
+- Monitoring conditions for plant growth inside a propagator or greenhouse: measure conditions which may impact on the health of the plants.
 
 ##What next
   - Use your data logging code to explore conditions on the ISS following our [Sensing Science]() activity.
