@@ -9,7 +9,7 @@ In the first part of this activity, you built a data logger that logs all data f
 ## Choosing which pieces of data to log.
 Sometimes you may not want to log data from every sensor on the Sense HAT depending on what you are investigating. To just capture some of the sensor data you need to make a few changes to your code. Firstly, you'll need to add some variables to our settings section so that you can specify which data to log. Then, your `file_setup` function will need to be adapted in order to add only the headers you want. Finally, you will have to adapt your `get_sense_data` function to only capture the required data.
 
-1. For each piece of data you want to log you will need a **Boolean** (one that can either be **True** or **False**) variable to your settings section. In the code below, these have been capitalised to make them stand out. For now, they have been set to **True**.
+1. For each piece of data you want to log you will need a **Boolean** (one that can either be **True** or **False**) variable to your settings section. In the code below, these have been capitalised to make them stand out. For now, they have been set to `True`.
 
   ```python3
   ## Logging Settings
