@@ -1,19 +1,19 @@
-# Building a Sense-HAT datalogger (part 2)
+# Sense HAT Data Logger - Part 2
 
-In the first part of this activitiy you build a data logger that logs all data from the Sense-HAT, as often as it can and starts when your Raspberry Pi starts. If you follow this worksheet you'll be able to extend your data logger to add some optional features such as:
+In the first part of this activity, you built a data logger that logs all data from the Sense HAT as often as it can and starts when your Raspberry Pi starts. If you follow this worksheet, you'll be able to extend your data logger to add some optional features such as:
 
   - Being able to select which data your program logs from the Sense-HAT
-  - Adding the ability to log data at a fixed interval (every 10 seconds for example)
-  - Being able to start and stop logging using the Sense-HAT joystick.
+  - Adding the ability to log data at a fixed interval (every ten seconds for example)
+  - Being able to start and stop logging using the Sense HAT joystick.
 
-## Optionally choosing which pieces of data to log.
-Sometimes you may not want to log data from every sensor on the Sense-HAT depending on what your investigating. To just capture some of the sensor data you need to make a few changes to your code.
+## Choosing which pieces of data to log.
+Sometimes you may not want to log data from every sensor on the Sense HAT depending on what you are investigating. To just capture some of the sensor data you need to make a few changes to your code.
 
   - You'll need to add some variables to our settings section so that you can specify which data to log.
   - Your file_setup function will need to be adapted in order to add only the headers you want.
   - You will have to adapt your get_sense_data function to only capture the required data.
 
-1. For each piece of data you want to log you will need a **Boolean** (one that can either be *True* or *False*) variable to your settings section. In the code below these have been capitalised to make them stand out and for now have been set to True.
+1. For each piece of data you want to log you will need a **Boolean** (one that can either be **True** or **False**) variable to your settings section. In the code below, these have been capitalised to make them stand out. For now, they have been set to **True**.
 
   ```python3
   ## Logging Settings
@@ -30,7 +30,7 @@ Sometimes you may not want to log data from every sensor on the Sense-HAT depend
   WRITE_FREQUENCY = 1
   ```
 
-1. You then need to update your **file_setup** function to only append the headings that are set to `True`
+1. You then need to update your `file_setup` function to only append the headings that are set to `True`
 
   ```python3
   def file_setup(filename):
@@ -100,7 +100,7 @@ Sometimes you may not want to log data from every sensor on the Sense-HAT depend
 
       return sense_data
     ```
-    Will need to be adapted to have each piece of Sense-HAT data wrapped in a `if` statement which will check whether the corresponding setting is set to `True`
+    This will need to be adapted to have each piece of Sense HAT data wrapped in a `if` statement which will check whether the corresponding setting is set to `True`
 
     ```python3
     def get_sense_data():
@@ -144,7 +144,7 @@ Sometimes you may not want to log data from every sensor on the Sense-HAT depend
     Now when you run your code you should be able to switch the collection of different pieces of data **on/off** by changing the settings at the top to **True/Flase**
 
     ## Logging data at a fixed interval
-    Currently the data logger you have written will collect data as fast as it can (many times a second) which is great for many situations, particularly when the environment is changing rapidly. However, sometimes you may want to collect data less frequently, when change is more gradual. To make this work you will need to develop you code in a few ways.
+    Currently the data logger you have written will collect data as fast as it can (many times a second). This is great for many situations, particularly when the environment is changing rapidly. However, you may sometimes want to collect data less frequently, when change is more gradual. To make this work, you will need to develop your code in a few ways.
 
     - Add the some libraries to your code to enable some extra functionality.
     - Include a setting to set the interval between logging events
@@ -214,9 +214,9 @@ Sometimes you may not want to log data from every sensor on the Sense-HAT depend
     With these changes made you should be able specify the delay between logging events and log data at whatever interval you want. You can see the full code [here](code/Sense_Logger_v4.py)
 
 ## Collect your data
-  Use you python code to record data over a long period of time at an interval of your choice, such as:
-    - Measure the temperature, humidity and pressure of a room in your house every 5 mins (300 seconds) over the period of a week.
-    - Monitoring conditions for plant growth, inside a propagator or greenhouse measure conditions which may impact on the health of the plants.
+  Use your Python code to record data over a long period of time at an interval of your choice, such as:
+    - Measure the temperature, humidity and pressure of a room in your house every five minutes (i.e. every 300 seconds) over the period of a week.
+    - Monitoring conditions for plant growth inside a propagator or greenhouse: measure conditions which may impact on the health of the plants.
 
-##What's next
+##What next
   - Use your data logging code to explore conditions on the ISS following our [Sensing Science]() activity.
