@@ -162,7 +162,7 @@ Currently the data logger you have written will collect data as fast as it can (
 
 1. With these libraries imported you can now add a setting to your setting section which will set the DELAY between logging. If you set it to zero the program will behave as it has so far and log as often as possible. Anything higher than zero will use a seperate `timed_log` function which you'll write in the set step.
 
-Add the line `DELAY=5` to you settings section for a five second delay, as shown below.
+  Add the line `DELAY=5` to you settings section for a five second delay, as shown below.
 
     ```python3
     ##### Logging Settings #####
