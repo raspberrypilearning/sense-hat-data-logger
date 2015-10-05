@@ -53,22 +53,22 @@ Sometimes you may not want to log data from every sensor on the Sense HAT depend
           f.write(",".join(str(value) for value in header)+ "\n")
   ```
 
-    In this new version of the function you start with an empty list for the header
+  In this new version of the function you start with an empty list for the header
     ```python3
     header =[]
     ```
-    Then each setting is checked and if that setting is set to `True` then the related data is either appended (if it's a item).
+  Then each setting is checked and if that setting is set to `True` then the related data is either appended (if it's a item).
     ```python3
     if TEMP_H:
         header.append("temp_h")
     ```
-    Or extended if it's multiple items of data.
+  Or extended if it involves multiple items of data.
     ```python3
     if ORIENTATION:
         header.extend(["pitch","roll","yaw"])
     ```
 
-1. The final change to make is to the `get_sense_data` function which is a similar change to the one made to the `file_setup` function. Your code which did look like this:
+1. The final change to make is to the `get_sense_data` function, which is a similar change to the one made to the `file_setup` function. Your code which did look like this:
 
   ```python3
   def get_sense_data():
@@ -95,7 +95,7 @@ Sometimes you may not want to log data from every sensor on the Sense HAT depend
 
       return sense_data
     ```
-    This will need to be adapted to have each piece of Sense HAT data wrapped in a `if` statement which will check whether the corresponding setting is set to `True`
+  This will need to be adapted to have each piece of Sense HAT data wrapped in a `if` statement which will check whether the corresponding setting is set to `True`
 
     ```python3
     def get_sense_data():
@@ -134,17 +134,18 @@ Sometimes you may not want to log data from every sensor on the Sense HAT depend
         return sense_data
     ```
 
-    You can find a complete code listing [here](code/Sense_Logger_v3.py).
+  You can find a complete code listing [here](code/Sense_Logger_v3.py).
 
-    Now when you run your code you should be able to switch the collection of different pieces of data **on/off** by changing the settings at the top to **True/Flase**
+  Now when you run your code you should be able to switch the collection of different pieces of data **on/off** by changing the settings at the top to **True/Flase**
 
-    ## Logging data at a fixed interval
-    Currently the data logger you have written will collect data as fast as it can (many times a second). This is great for many situations, particularly when the environment is changing rapidly. However, you may sometimes want to collect data less frequently, when change is more gradual. To make this work, you will need to develop your code in a few ways.
+## Logging data at a fixed interval
 
-    - Add the some libraries to your code to enable some extra functionality.
-    - Include a setting to set the interval between logging events
-    - Write a function which will be run at the start of the program (before the loop) that logs data and then waits for the specified interval.
-    - Amend part of the code inside the while loop so that the loop skips logging there if an interval has been set.
+Currently the data logger you have written will collect data as fast as it can (multiple times a second). This is great for many situations, particularly when the environment is changing rapidly. However, you may sometimes want to collect data less frequently, when change is more gradual. To make this work, you will need to develop your code in a few ways.
+
+  - Add some libraries to your code to enable extra functionality.
+  - Set the interval between logging events
+  - Write a function which will be run at the start of the program, before the loop, to log data and then wait for the specified interval.
+  - Amend part of the code inside the `while` loop so that the loop skips logging there if an interval has been set.
 
 1. The first step is to import the two library elements at the top of you code:
   - The **sleep** function from the **time** library allows you code to pause between lines of code.
