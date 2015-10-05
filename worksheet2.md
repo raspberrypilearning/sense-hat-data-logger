@@ -196,7 +196,7 @@ Currently the data logger you have written will collect data as fast as it can (
       Thread(target= timed_log).start()
   ```
 
-  This checks whether a delay has been set and, if so, starts a seperate thread which launches the `timed_log` in the background.
+  This checks whether a delay has been set and, if so, starts a seperate thread which launches the `timed_log` function in the background.
 
 4. The final step is to adjust a line inside the `while True:` loop so that if a delay is set then the loop doesn't log any data and simply handles the writing out of data to the file. Find the line that says `log_data` and replace it with:
 
