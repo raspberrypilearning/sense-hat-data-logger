@@ -7,11 +7,7 @@ In the first part of this activity, you built a data logger that logs all data f
   - Being able to start and stop logging using the Sense HAT joystick.
 
 ## Choosing which pieces of data to log.
-Sometimes you may not want to log data from every sensor on the Sense HAT depending on what you are investigating. To just capture some of the sensor data you need to make a few changes to your code.
-
-  - You'll need to add some variables to our settings section so that you can specify which data to log.
-  - Your file_setup function will need to be adapted in order to add only the headers you want.
-  - You will have to adapt your get_sense_data function to only capture the required data.
+Sometimes you may not want to log data from every sensor on the Sense HAT depending on what you are investigating. To just capture some of the sensor data you need to make a few changes to your code. Firstly, you'll need to add some variables to our settings section so that you can specify which data to log. Then, your `file_setup` function will need to be adapted in order to add only the headers you want. Finally, you will have to adapt your `get_sense_data` function to only capture the required data.
 
 1. For each piece of data you want to log you will need a **Boolean** (one that can either be **True** or **False**) variable to your settings section. In the code below, these have been capitalised to make them stand out. For now, they have been set to **True**.
 
@@ -72,8 +68,7 @@ Sometimes you may not want to log data from every sensor on the Sense HAT depend
         header.extend(["pitch","roll","yaw"])
     ```
 
-1. The final change to make is to the **get_sense_data** function which is a similar change to the one made to the **file_setup** function.
-  Your code which did look like this:
+1. The final change to make is to the `get_sense_data` function which is a similar change to the one made to the `file_setup` function. Your code which did look like this:
 
   ```python3
   def get_sense_data():
@@ -151,22 +146,22 @@ Sometimes you may not want to log data from every sensor on the Sense HAT depend
     - Write a function which will be run at the start of the program (before the loop) that logs data and then waits for the specified interval.
     - Amend part of the code inside the while loop so that the loop skips logging there if an interval has been set.
 
-    1. The first step is to import the two library elements at the top of you code:
-      - The **sleep** function from the **time** library allows you code to pause between lines of code.
-      - A **Thread**, from the **threading** library allows a seperate chunk of code to be run at the same time as another. We need one thread to continually check the sensors, and another to log the data every so many seconds.
+1. The first step is to import the two library elements at the top of you code:
+  - The **sleep** function from the **time** library allows you code to pause between lines of code.
+  - A **Thread**, from the **threading** library allows a seperate chunk of code to be run at the same time as another. We need one thread to continually check the sensors, and another to log the data every so many seconds.
 
-      Your import section should now look like this:
+Your import section should now look like this:
 
-      ```python3
-      from datetime import datetime
-      from sense_hat import SenseHat
-      from time import sleep
-      from threading import Thread
-      ```
+  ```python3
+  from datetime import datetime
+  from sense_hat import SenseHat
+  from time import sleep
+  from threading import Thread
+  ```
 
-    1. With these libraries imported you can now add a setting to your setting section which will set the DELAY between logging. If you set it to 0 the program will behave as it has so far and log as often as possible. Anything higher than 0 will use a seperate **timed_log** function which you'll write in the set step.
+1. With these libraries imported you can now add a setting to your setting section which will set the DELAY between logging. If you set it to 0 the program will behave as it has so far and log as often as possible. Anything higher than 0 will use a seperate `timed_log` function which you'll write in the set step.
 
-    Add the line `DELAY=5` to you settings section for a 5 second delay, as shown below.
+Add the line `DELAY=5` to you settings section for a 5 second delay, as shown below.
 
     ```python3
     ##### Logging Settings #####
@@ -183,7 +178,7 @@ Sometimes you may not want to log data from every sensor on the Sense HAT depend
     DELAY=5
     ```
 
-    2. You'll now need to add a function for handling the **timed_log**, this will run in the background and call **log_data** every 5 seconds. Add the following definition to your **functions** section.
+2. You'll now need to add a function for handling the `timed_log`, this will run in the background and call `log_data` every 5 seconds. Add the following definition to your `functions` section.
 
     ```python3
     def timed_log():
@@ -191,7 +186,7 @@ Sometimes you may not want to log data from every sensor on the Sense HAT depend
         time.sleep(DELAY)
     ```
 
-    3. Now that your imports, settings, and functions have been added you'll now need to adjust you **Main Program** to include them.
+3. Now that your imports, settings, and functions have been added you'll now need to adjust you **Main Program** to include them.
 
     First add these two lines above the `while True:` line:
 
