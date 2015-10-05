@@ -1,6 +1,6 @@
 # Sense HAT Data Logger
 
-During the Astro Pi mission a pair of Raspberry Pis with Sense HATs attached will be capturing and logging a range of data about life on board the International Space Station.
+During the Astro Pi mission, a pair of Raspberry Pis with Sense HATs attached will be capturing and logging a range of data about life on board the International Space Station.
 
 In this activity you will use a Raspberry Pi, a Sense HAT and some Python code to create your own datalogging tool, which you can use to capture interesting data and perform experiments.
 
@@ -57,13 +57,12 @@ def get_sense_data():
     ```python
     mag_x,mag_y,mag_z = sense.get_compass_raw().values()
     sense_data.extend([mag_x,mag_y,mag_z])
-
+    
     x,y,z = sense.get_accelerometer_raw().values()
     sense_data.extend([x,y,z])
 
     gyro_x,gyro_y,gyro_z = sense.get_gyroscope_raw().values()
     sense_data.extend([gyro_x,gyro_y,gyro_z])
-
 
     sense_data.append(datetime.now())
 
