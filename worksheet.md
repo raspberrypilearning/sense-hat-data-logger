@@ -45,7 +45,7 @@ def get_sense_data():
 ```
   The first line defines your function name, and the second sets up an empty **list** structure into which you will add your collected data.
 
-  The next four lines get data from some of the sensors and adds (or appends) them to the **sense_data** list.
+  The next four lines get data from some of the sensors and adds (or appends) them to the `sense_data` list.
 
   ```python
     yaw,pitch,roll = sense.get_orientation().values()
@@ -72,7 +72,7 @@ def get_sense_data():
   The final part of the function adds three more sensor values (magnetometer, accelorometer, and gyroscope), and then the current time. The final line of the function **returns** (or sends) the **sense_data** list to where the main program will ask for it.
 
 1. Next you'll need to add some lines to your **Main Program** Section, this will need to do two things:
-  - create a sense object, which represents the Sense-HAT
+  - create a sense object, which represents the Sense HAT
   - repeatedly **get_sense_data** from the sensors and display it
 
   Add the following code to your **Main Program** section:
@@ -89,7 +89,7 @@ def get_sense_data():
 
   ![Complete code](images/code2.png)
 
-1. You can now test you logger by first of all saving it, by pressing **Ctrl+S** and giving you program a name such as `Sense_Logger_v1.py` once saved you can run the program by pressing **F5**. You should see lots of text scrolling past as shown below.
+1. You can now test your logger. First you should save it: press **Ctrl+S** and chose a name such as `Sense_Logger_v1.py`. Once the program is saved you can run it by pressing **F5**. You should see lots of text scrolling past as shown below.
 
   ![Sense data being output to the console](images/run1.png)
 
