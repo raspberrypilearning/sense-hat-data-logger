@@ -81,8 +81,9 @@ def get_sense_data():
     return sense_data
 
 def timed_log():
-    log_data()
-    time.sleep(DELAY)
+    while True:
+        log_data()
+        time.sleep(DELAY)
 
 
 
@@ -106,7 +107,7 @@ while True:
 
     if DELAY == 0:
         log_data()
-        
+
     if len(batch_data) >= WRITE_FREQUENCY:
         print("Writing to file..")
         with open(filename,"a") as f:
