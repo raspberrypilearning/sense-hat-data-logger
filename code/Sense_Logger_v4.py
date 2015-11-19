@@ -83,7 +83,7 @@ def get_sense_data():
 def timed_log():
     while True:
         log_data()
-        time.sleep(DELAY)
+        sleep(DELAY)
 
 
 

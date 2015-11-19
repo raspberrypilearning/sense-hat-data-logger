@@ -183,8 +183,9 @@ Currently the data logger you have written will collect data as fast as it can (
 
     ```python3
     def timed_log():
-        log_data()
-        time.sleep(DELAY)
+        while True:
+          log_data()
+          sleep(DELAY)
     ```
 
 3. Now that your imports, settings, and functions have been added you'll now need to adjust your main program to include them.
@@ -193,6 +194,7 @@ Currently the data logger you have written will collect data as fast as it can (
 
   ```python3
   if DELAY > 0:
+      sense_data = get_sense_data()
       Thread(target= timed_log).start()
   ```
 
