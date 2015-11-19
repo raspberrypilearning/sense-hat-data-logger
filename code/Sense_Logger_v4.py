@@ -100,6 +100,7 @@ else:
 file_setup(filename)
 
 if DELAY > 0:
+    sense_data = get_sense_data()
     Thread(target= timed_log).start()
 
 while True:
