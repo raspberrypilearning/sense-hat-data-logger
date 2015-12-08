@@ -167,10 +167,10 @@ What would be more useful would be to write this data to a CSV (comma separated 
   ```python
   batch_data= []
 
-  if FLIENAME == "":
+  if FILENAME == "":
       filename = "SenseLog-"+str(datetime.now())+".csv"
   else:
-      filename = FILEAME+"-"+str(datetime.now())+".csv"
+      filename = FILENAME+"-"+str(datetime.now())+".csv"
 
   file_setup(filename)
 ```
