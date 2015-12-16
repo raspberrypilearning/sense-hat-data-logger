@@ -35,14 +35,14 @@ In preparation for this resource, attach your Sense HAT to your Raspberry Pi and
 1. In order to get data from the Sense HAT you will need to write a function called **get_sense_data** which will check each sensor in turn and store the sensor data in a list. The function should be added to the **Functions** section.
 
   ```python
-def get_sense_data():
+  def get_sense_data():
     sense_data=[]
 
     sense_data.append(sense.get_temperature_from_humidity())
     sense_data.append(sense.get_temperature_from_pressure())
     sense_data.append(sense.get_humidity())
     sense_data.append(sense.get_pressure())
-```
+  ```
   The first line defines your function name, and the second sets up an empty **list** structure into which you will add your collected data.
 
   The next four lines get data from some of the sensors and adds (or appends) them to the `sense_data` list.
