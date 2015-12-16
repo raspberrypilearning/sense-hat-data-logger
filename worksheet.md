@@ -48,26 +48,37 @@ def get_sense_data():
   The next four lines get data from some of the sensors and adds (or appends) them to the `sense_data` list.
 
   ```python
-    yaw,pitch,roll = sense.get_orientation().values()
+    o = sense.get_orientation()
+    yaw = o["yaw"]
+    pitch = o["pitch"]
+    roll = o["roll"]
     sense_data.extend([pitch,roll,yaw])
 ```
 
   The rest of the sensors are a bit more complex as they each give three values back. In the lines above you are asking the Sense HAT for the three orientation values (yaw, pitch, roll) and the second line extends the sense_data list by those three values.
 
-    ```python
-    mag_x,mag_y,mag_z = sense.get_compass_raw().values()
+  ```python
+    mag = sense.get_compass_raw()
+    mag_x = mag["x"]
+    mag_y = mag["y"]
+    mag_z = mag["z"]
     sense_data.extend([mag_x,mag_y,mag_z])
     
-    x,y,z = sense.get_accelerometer_raw().values()
+    acc = sense.get_accelerometer_raw()
+    x = acc["x"]
+    y = acc["y"]
+    z = acc["z"]
     sense_data.extend([x,y,z])
 
-    gyro_x,gyro_y,gyro_z = sense.get_gyroscope_raw().values()
+    gyro = sense.get_gyroscope_raw()
+    gyro_x = ["x"]
+    gyro_y = ["y"]
+    gyro_z = ["z"]
     sense_data.extend([gyro_x,gyro_y,gyro_z])
-
     sense_data.append(datetime.now())
 
     return sense_data
-    ```
+  ```
   The final part of the function adds three more sensor values (magnetometer, accelorometer, and gyroscope), and then the current time. The final line of the function **returns** (or sends) the **sense_data** list to where the main program will ask for it.
 
 1. Next you'll need to add some lines to your **Main Program** Section, this will need to do two things:
