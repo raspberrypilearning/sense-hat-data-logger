@@ -69,9 +69,9 @@ In preparation for this resource, attach your Sense HAT to your Raspberry Pi and
     sense_data.extend([x,y,z])
 
     gyro = sense.get_gyroscope_raw()
-    gyro_x = ["x"]
-    gyro_y = ["y"]
-    gyro_z = ["z"]
+    gyro_x = gyro["x"]
+    gyro_y = gyro["y"]
+    gyro_z = gyro["z"]
     sense_data.extend([gyro_x,gyro_y,gyro_z])
     
     sense_data.append(datetime.now())
