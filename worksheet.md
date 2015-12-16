@@ -76,12 +76,12 @@ def get_sense_data():
 
   Add the following code to your **Main Program** section:
 
-  ```python
+  ```python3
   sense = SenseHat()
 
   while True:
-    sense_data = get_sense_data()
-    print(sense_data)
+      sense_data = get_sense_data()
+      print(sense_data)
   ```
 
   Your final program should look like this:
