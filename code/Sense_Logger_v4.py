@@ -45,6 +45,7 @@ def log_data():
     output_string = ",".join(str(value) for value in sense_data)
     batch_data.append(output_string)
 
+
 def get_sense_data():
     sense_data=[]
 
@@ -61,19 +62,31 @@ def get_sense_data():
         sense_data.append(sense.get_pressure())
 
     if ORIENTATION:
-        yaw,pitch,roll = sense.get_orientation().values()
+        o = sense.get_orientation()
+        yaw = o["yaw"]
+        pitch = o["pitch"]
+        roll = o["roll"]
         sense_data.extend([pitch,roll,yaw])
 
     if MAG:
-        mag_x,mag_y,mag_z = sense.get_compass_raw().values()
+        mag = sense.get_compass_raw()
+        mag_x = mag["x"]
+        mag_y = mag["y"]
+        mag_z = mag["z"]
         sense_data.extend([mag_x,mag_y,mag_z])
 
     if ACCELERATION:
-        x,y,z = sense.get_accelerometer_raw().values()
+        acc = sense.get_accelerometer_raw()
+        x = acc["x"]
+        y = acc["y"]
+        z = acc["z"]
         sense_data.extend([x,y,z])
 
     if GYRO:
-        gyro_x,gyro_y,gyro_z = sense.get_gyroscope_raw().values()
+        gyro = sense.get_gyroscope_raw()
+        gyro_x = ["x"]
+        gyro_y = ["y"]
+        gyro_z = ["z"]
         sense_data.extend([gyro_x,gyro_y,gyro_z])
 
     sense_data.append(datetime.now())
