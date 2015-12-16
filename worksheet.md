@@ -47,17 +47,15 @@ In preparation for this resource, attach your Sense HAT to your Raspberry Pi and
 
   The next four lines get data from some of the sensors and adds (or appends) them to the `sense_data` list.
 
+  The rest of the sensors are a bit more complex as they each give three values back. In the lines above you are asking the Sense HAT for the three orientation values (yaw, pitch, roll) and the second line extends the sense_data list by those three values.
+
   ```python
     o = sense.get_orientation()
     yaw = o["yaw"]
     pitch = o["pitch"]
     roll = o["roll"]
     sense_data.extend([pitch,roll,yaw])
-```
-
-  The rest of the sensors are a bit more complex as they each give three values back. In the lines above you are asking the Sense HAT for the three orientation values (yaw, pitch, roll) and the second line extends the sense_data list by those three values.
-
-  ```python
+  
     mag = sense.get_compass_raw()
     mag_x = mag["x"]
     mag_y = mag["y"]
@@ -75,6 +73,7 @@ In preparation for this resource, attach your Sense HAT to your Raspberry Pi and
     gyro_y = ["y"]
     gyro_z = ["z"]
     sense_data.extend([gyro_x,gyro_y,gyro_z])
+    
     sense_data.append(datetime.now())
 
     return sense_data
