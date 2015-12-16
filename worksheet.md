@@ -27,7 +27,7 @@ In preparation for this resource, attach your Sense HAT to your Raspberry Pi and
 
   ![Code Snippet 1](images/code1.png)
 
-  - The first section, **Libraries**, is where you will import code that will give your program extra abilities. The line `from sense_hat import SenseHat` allows your program to use the Sense-HAT hardware. The line `from time import datetime` allows your program to use the time module.
+  - The first section, **Libraries**, is where you will import code that will give your program extra abilities. The line `from sense_hat import SenseHat` allows your program to use the Sense-HAT hardware. The line `from datetime import datetime` allows your program to use the time module.
   - The section headed **Logging Settings** is where you will be able to control different features of your logger program.
   - The third section, **Functions**, will contain short "chunks" of reusable code which do a specific job, such as writing the current data to a file.
   - The final section, **Main Program**, is the part of your code which uses each of the functions in the right sequence to run the whole program.
