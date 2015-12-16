@@ -36,12 +36,12 @@ In preparation for this resource, attach your Sense HAT to your Raspberry Pi and
 
   ```python
   def get_sense_data():
-    sense_data=[]
+      sense_data=[]
 
-    sense_data.append(sense.get_temperature_from_humidity())
-    sense_data.append(sense.get_temperature_from_pressure())
-    sense_data.append(sense.get_humidity())
-    sense_data.append(sense.get_pressure())
+      sense_data.append(sense.get_temperature_from_humidity())
+      sense_data.append(sense.get_temperature_from_pressure())
+      sense_data.append(sense.get_humidity())
+      sense_data.append(sense.get_pressure())
   ```
   The first line defines your function name, and the second sets up an empty **list** structure into which you will add your collected data.
 
