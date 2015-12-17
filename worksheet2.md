@@ -22,7 +22,7 @@ Sometimes you may not want to log data from every sensor on the Sense HAT depend
   MAG=True
   GYRO=True
 
-  BASENAME = "Fall"
+  FILENAME = "Fall"
   WRITE_FREQUENCY = 1
   ```
 
