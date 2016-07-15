@@ -149,7 +149,7 @@ Currently the data logger you have written will collect data as fast as it can (
 
 1. The first step is to import the two library elements at the top of your code:
   - The **sleep** function from the **time** library allows you code to pause between lines of code.
-  - A **Thread**, from the **threading** library allows a seperate chunk of code to be run at the same time as another. We need one thread to continually check the sensors, and another to log the data every so many seconds.
+  - A **Thread**, from the **threading** library allows a separate chunk of code to be run at the same time as another. We need one thread to continually check the sensors, and another to log the data every so many seconds.
 
   Your import section should now look like this:
 
@@ -160,7 +160,7 @@ Currently the data logger you have written will collect data as fast as it can (
     from threading import Thread
     ```
 
-1. With these libraries imported you can now add a setting to your setting section which will set the DELAY between logging. If you set it to zero the program will behave as it has so far and log as often as possible. Anything higher than zero will use a seperate `timed_log` function which you'll write in the set step.
+1. With these libraries imported you can now add a setting to your setting section which will set the DELAY between logging. If you set it to zero the program will behave as it has so far and log as often as possible. Anything higher than zero will use a separate `timed_log` function which you'll write in the set step.
 
   Add the line `DELAY=5` to you settings section for a five second delay, as shown below.
 
@@ -198,7 +198,7 @@ Currently the data logger you have written will collect data as fast as it can (
       Thread(target= timed_log).start()
   ```
 
-  This checks whether a delay has been set and, if so, starts a seperate thread which launches the `timed_log` function in the background.
+  This checks whether a delay has been set and, if so, starts a separate thread which launches the `timed_log` function in the background.
 
 4. The final step is to adjust a line inside the `while True:` loop so that if a delay is set then the loop doesn't log any data and simply handles the writing out of data to the file. Find the line that says `log_data` and replace it with:
 
