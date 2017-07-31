@@ -21,7 +21,6 @@ steps:
 - title: Writing the data to a file
 - title: Starting your data logger on boot.
 - title: Collect your data
-- title: What's Next
 - title: Sense HAT Data Logger - Part 2
 - title: Choosing which pieces of data to log.
 - title: Logging data at a fixed interval
