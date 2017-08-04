@@ -4,7 +4,7 @@ hero_image: images/banner.png
 description: Using the Sense-HAT hardware and it's Python library you will create
   a data-logging device
 original_url: https://raspberrypi.org/learning/sense-hat-data-logger
-theme: red
+theme: turquoise
 duration: 2
 listed: true
 ingredient: false
