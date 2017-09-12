@@ -1,6 +1,7 @@
-## Collect your data
-Conduct an experiment involving a change in one of conditions in order to measure and collect data. You could:
-  - Place your Raspberry Pi in the fridge and record the ambient temperature. What happens when you open the door? How quickly does the temperature inside the fridge return to normal?
-  - Drop your Raspberry Pi from a height and track the changes in orientation and acceleration (ensure you protect your Raspberry Pi carefully before dropping it)
-  - Send your Raspberry Pi high into the atmosphere using a high-altitude balloon and explore the changes in temperature, pressure, and humidity throughout the flight.
+## Sense HAT Data Logger - Part 2
+
+In the first part of this activity, you built a data logger that logs all data from the Sense HAT as often as it can and starts when your Raspberry Pi starts. If you follow this worksheet, you'll be able to extend your data logger to add some optional features such as:
+
+  - Being able to select which data your program logs from the Sense-HAT
+  - Adding the ability to log data at a fixed interval (every ten seconds for example)
 
