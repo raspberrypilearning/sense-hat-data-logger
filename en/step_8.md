@@ -1,4 +1,4 @@
-## Challenge: Specifying the data to be recorded
+## Challenge: Selecting the data to be recorded
 --- challenge ---
 You might not always want to record all the sensor data. One solution to this is to simply comment out the lines you don't need.
 
