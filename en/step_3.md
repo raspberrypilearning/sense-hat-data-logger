@@ -7,6 +7,7 @@ First you can write a short script to get data from the Sense HAT and output it 
 - Pressure
 - Orientation
 - Acceleration
+- Gyroscope
 - Magnetic Field
 
 - Attach your Sense HAT to you Raspberry Pi.
@@ -28,77 +29,117 @@ from datetime import datetime
 sense = SenseHat()
 ```
 
-- In order to get data from the Sense HAT you will need to write a function called **get_sense_data** which will check each sensor in turn and store the sensor data in a list. The function should be added to the **Functions** section.
+- You're now going to create a function which will fetch **all** the sensor data from the Sense HAT and return it all as a list. Start by defining your function and creating an empty list.
 
-  ```python
-  def get_sense_data():
-      sense_data=[]
+```python
+def get_sense_data():
+	sense_data = []
+```
 
-      sense_data.append(sense.get_temperature_from_humidity())
-      sense_data.append(sense.get_temperature_from_pressure())
-      sense_data.append(sense.get_humidity())
-      sense_data.append(sense.get_pressure())
-  ```
-  The first line defines your function name, and the second sets up an empty **list** structure into which you will add your collected data.
+- The section below shows you how to collect the data from the sensors. In each case you want to append this data to the list, and finish off the function by returning the `sense_data` list.
 
-  The next four lines get data from some of the sensors and adds (or appends) them to the `sense_data` list.
+--- collapse ---
+---
+title: Reading all the sensors
+---
+- To read the environmental sensors you can use the following three code snippets.
+```python
+sense.get_temperature()
+sense.get_pressure()
+sense.get_humidity()
+```
+- To read the orientation of the Sense HAT, use the following three lines:
+```
+orientation = sense.get_orientation()
+orientation["yaw"]
+orientation["pitch"]
+orientation["roll"]
+```
+- You can get the raw compass readings using the following code:
+```python
+mag = sense.get_compass_raw()
+mag["x"]
+mag["y"]
+mag["z"]
+```
+- You can get the raw accelerometer reading using the following code:
+```python
+acc = sense.get_accelerometer_raw()
+acc["x"]
+acc["y"]
+acc["z"]
+```
+- Finally you can get the raw gyroscope readings using the following code:
+```python
+gyro = sense.get_gyroscope_raw()
+gyro["x"]
+gyro["y"]
+gyro["z"]
+```
+--- /collapse ---
 
-  The rest of the sensors are a bit more complex as they each give three values back. In the lines above you are asking the Sense HAT for the three orientation values (yaw, pitch, roll) and the second line extends the sense_data list by those three values.
+- The only other data that you need is the date and time. To find this out you can use the following code:
 
-  ```python
-    o = sense.get_orientation()
-    yaw = o["yaw"]
-    pitch = o["pitch"]
-    roll = o["roll"]
-    sense_data.extend([pitch,roll,yaw])
-  
-    mag = sense.get_compass_raw()
-    mag_x = mag["x"]
-    mag_y = mag["y"]
-    mag_z = mag["z"]
-    sense_data.extend([mag_x,mag_y,mag_z])
-    
-    acc = sense.get_accelerometer_raw()
-    x = acc["x"]
-    y = acc["y"]
-    z = acc["z"]
-    sense_data.extend([x,y,z])
+```python
+datetime.now()
+```
 
-    gyro = sense.get_gyroscope_raw()
-    gyro_x = gyro["x"]
-    gyro_y = gyro["y"]
-    gyro_z = gyro["z"]
-    sense_data.extend([gyro_x,gyro_y,gyro_z])
-    
-    sense_data.append(datetime.now())
+- Now complete your function, add each individual bit of data to the `sense_data` list, and finish by returning the list.
 
-    return sense_data
-  ```
-  The final part of the function adds three more sensor values (magnetometer, accelorometer, and gyroscope), and then the current time. The final line of the function **returns** (or sends) the **sense_data** list to where the main program will ask for it.
+[[[generic-python-append-list]]]
 
-- Next you'll need to add some lines to your **Main Program** Section, this will need to do two things:
-  - create a sense object, which represents the Sense HAT
-  - repeatedly **get_sense_data** from the sensors and display it
+--- hints --- --- hint ---
+To begin with fetch the environmental sensor readings within your function and add them to the list:
+```python
+def get_sense_data():
+	sense_data = []
+	sense_data.append(sense.get_temperature())
+	sense_data.append(sense.get_pressure())
+	sense_data.append(sense.get_humidity())
 
-  Add the following code to your **Main Program** section:
+	return sense_data
+```
+--- /hint --- --- hint ---
+- You can add the three orientation readings and add them to the list.
+```python
+def get_sense_data():
+	sense_data = []
+	sense_data.append(sense.get_temperature())
+	sense_data.append(sense.get_pressure())
+	sense_data.append(sense.get_humidity())
 
-  ```python3
-  sense = SenseHat()
+	orientation = sense.get_orientation()
+	sense_data.append(orientation["yaw"])
+	sense_data.append(orientation["pitch"])
+	sense_data.append(orientation["roll"])
+	
+	return sense_data
+```
+--- /hint --- --- hint ---
+- Get the remaining sensor readings along with the data and time, by adding the following to your function:
+```python
+mag = sense.get_compass_raw()
+sense_data.append(mag["x"])
+sense_data.append(mag["y"])
+sense_data.append(mag["z"])
 
-  while True:
-      sense_data = get_sense_data()
-      print(sense_data)
-  ```
+acc = sense.get_accelerometer_raw()
+sense_data.append(acc["x"])
+sense_data.append(acc["y"])
+sense_data.append(acc["z"])
 
-  Your final program should look like this:
+gyro = sense.get_gyroscope_raw()
+sense_data.append(gyro["x"])
+sense_data.append(gyro["y"])
+sense_data.append(gyro["z"])
 
-  ![Complete code](images/code2.png)
+sense_data.append(datetime.now())
+```
+--- /hint --- --- /hints ---
 
-- You can now test your logger. First you should save it: press **Ctrl+S** and chose a name such as `Sense_Logger_v1.py`. Once the program is saved you can run it by pressing **F5**. You should see lots of text scrolling past as shown below.
+- To finish off you can look at the data by printing out the list within an infinite loop. Add this to the end of your script and then run the code.
 
-  ![Sense data being output to the console](images/run1.png)
-
-  The highlighted section shows a single line of data bundled together into a list, you should be able to tell which sensor data is which.
-
-  To stop the program running you can press **Ctrl+C** to cancel the execution.
-
+```python
+while True:
+	print(get_sense_data())
+```
