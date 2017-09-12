@@ -6,7 +6,7 @@ Normally in such situations you would use a `sleep()` function to pause the scri
 
 To get around this, you can use `timedelta` to check the time difference between two readings.
 
-[[[generic-python-timedelta]]]
+[[[generic-python-datetime-timedelta]]]
 
 To use this to write data, every one second for example, you would need to do the following.
 	- Create a timestamp at the start of your script, set to `datetime.now()`
