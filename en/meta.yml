@@ -19,4 +19,4 @@ steps:
 - title: Starting your data logger on boot.
 - title: Adding a header to the CSV
 - title: Recording at specific time intervals
-- title: "Challenge: Specifying the data to be recorded"
+- title: "Challenge: Selecting the data to be recorded"
