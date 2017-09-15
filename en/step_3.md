@@ -1,26 +1,28 @@
 ## Getting data from the Sense HAT
 
-First you can write a short script to get data from the Sense HAT and output it to the screen. Using the sensors, you can capture the following data:
+Using the Sense HAT, you can capture the data from the following sensors:
 
-- Temperature
-- Humidity
-- Pressure
-- Orientation
-- Acceleration
+- Temperature sensor
+- Humidity sensor
+- Pressure sensor
+- Orientation sensor
+- Acceleration sensor
 - Gyroscope
-- Magnetic Field
+- Magnetic field sensor
+
+First, write a short script to get readings from the HAT's sensors and output them to the screen. 
 
 - Attach your Sense HAT to you Raspberry Pi.
 
 [[[rpi-sensehat-attach]]]
 
-- Once your Sense HAT is attached, boot your Raspberry Pi.
+- Once your Sense HAT is attached, boot up your Pi.
 
-- Open Idle on your Raspberry Pi and create a new file to work in.
+- Open IDLE, and create a new file to work in.
 
 [[[rpi-gui-idle-opening]]]
 
-- To begin this project, your will need to import the code to control your Sense HAT and you will also need a module to fetch the data and time from the Raspberry Pi. Start by adding these two lines of code.
+- To begin this script, your will need to import the Python modules to control your Sense HAT and to fetch the data and time from the Raspberry Pi. Start by adding these two lines of code:
 
 ```python
 from sense_hat import SenseHat
@@ -29,20 +31,20 @@ from datetime import datetime
 sense = SenseHat()
 ```
 
-- You're now going to create a function which will fetch **all** the sensor data from the Sense HAT and return it all as a list. Start by defining your function and creating an empty list.
+- Now you're going to create a function which will fetch **all** the sensor data and return it all as a list. Start by defining your function and creating an empty list.
 
 ```python
 def get_sense_data():
 	sense_data = []
 ```
 
-- The section below shows you how to collect the data from the sensors. In each case you want to append this data to the list, and finish off the function by returning the `sense_data` list.
+- The section below shows you how to collect the data from the different sensors. In each case you want to append the data to the `sense_data`list. Finish the function by returning the `sense_data` list.
 
 --- collapse ---
 ---
 title: Reading all the sensors
 ---
-- To read the environmental sensors you can use the following three code snippets.
+- To read the environmental sensors, you can use the following three commands:
 ```python
 sense.get_temperature()
 sense.get_pressure()
@@ -78,18 +80,18 @@ gyro["z"]
 ```
 --- /collapse ---
 
-- The only other data that you need is the date and time. To find this out you can use the following code:
+- The only other data that you need is the date and time. To find this out, you can use the following code:
 
 ```python
 datetime.now()
 ```
 
-- Now complete your function, add each individual bit of data to the `sense_data` list, and finish by returning the list.
+- To complete your function, add each individual bit of data to the `sense_data` list, and finish by returning the list.
 
 [[[generic-python-append-list]]]
 
 --- hints --- --- hint ---
-To begin with fetch the environmental sensor readings within your function and add them to the list:
+To begin with, fetch the environmental sensor readings within your function and add them to the list:
 ```python
 def get_sense_data():
 	sense_data = []
@@ -100,7 +102,7 @@ def get_sense_data():
 	return sense_data
 ```
 --- /hint --- --- hint ---
-- You can add the three orientation readings and add them to the list.
+- You can get the three orientation readings and add them to the list.
 ```python
 def get_sense_data():
 	sense_data = []
@@ -116,7 +118,7 @@ def get_sense_data():
 	return sense_data
 ```
 --- /hint --- --- hint ---
-- Get the remaining sensor readings along with the data and time, by adding the following to your function:
+- Get the remaining sensor readings along with the data and time by adding the following lines to your function:
 ```python
 mag = sense.get_compass_raw()
 sense_data.append(mag["x"])
@@ -137,7 +139,7 @@ sense_data.append(datetime.now())
 ```
 --- /hint --- --- /hints ---
 
-- To finish off you can look at the data by printing out the list within an infinite loop. Add this to the end of your script and then run the code.
+- To finish off, you can look at the data by printing out the list within an infinite loop. Add the following to the end of your script, and then save and run the code.
 
 ```python
 while True:
