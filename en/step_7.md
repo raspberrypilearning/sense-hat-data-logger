@@ -1,29 +1,29 @@
 ## Recording at specific time intervals
 
-At the moment your script records data as quickly as it possibly can. This is very useful for some experiments, but you may prefer to record data once per second, or even less.
+At the moment your script records data as quickly as it possibly can. This is very useful for some experiments, but you may prefer to record data once per second, or even less frequently.
 
-Normally in such situations you would use a `sleep()` function to pause the script. This can result in inaccurate readings from some of the Sense HAT's orientation sensors though, which need to be regularly polled.
+Normally in such situations you would use a `sleep()` function to pause the script. However, this can result in inaccurate readings from some of the Sense HAT's orientation sensors, which need to be regularly polled.
 
 To get around this, you can use `timedelta` to check the time difference between two readings.
 
 [[[generic-python-datetime-timedelta]]]
 
-To use this to write data, every one second for example, you would need to do the following.
-	- Create a timestamp at the start of your script, set to `datetime.now()`
-	- Create a variable called `delay` to store the number of seconds interval between data being written to the CSV
-	- Within your infinite loop, if the difference between the `timestamp` and the time returned by your function, is greater than the delay, data can be written and the timestamp reset.
+To use this approach to collect data you would need to do the following:
+	- At the start of your script, create a `timestamp` variable set to `datetime.now()`
+	- Decide how long you want the interval between data records to be (in seconds), and create a variable called `delay` to store that number
+	- Within your infinite loop, if the difference between the `timestamp` and the time of the reading returned by your `get_sense_data()` function is greater than `delay`, write data and reset `timestamp`
 	
-- Have a go at adding a one second delay to your data writing intervals, and use the hints below if you get stuck.
+- Have a go at adding a one-second delay to your data writing intervals, and use the hints below if you get stuck.
 
 --- hints --- --- hint ---
-Start by setting the `timestamp` and `delay` variables near the top of your script
+Start by setting the `timestamp` and `delay` variables near the top of your script:
 
 ```python
 timestamp = datetime.now()
 delay = 1
 ```
 --- /hint --- --- hint ---
-The time the reading was taken is the **last** item in the `data` list. So you can now calculate the time difference.
+The time the reading was taken is the **last** item in the list created by your `get_sense_data()` function, so you can now calculate the time difference like this:
 
 ```python
 while True:
@@ -37,8 +37,8 @@ while True:
 	data = get_sense_data()
 	dt = data[-1] - timestamp
 	if dt.seconds > delay:
-		timestamp = datetime.now()
 		data_writer.writerow(data)
+		timestamp = datetime.now()
 ```
 --- /hint --- --- /hints ---
 
