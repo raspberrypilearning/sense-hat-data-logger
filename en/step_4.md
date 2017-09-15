@@ -7,7 +7,7 @@ It would be more useful to write this data to a CSV (comma separated values) fil
   - Add a header row to the start of the file
   - Periodically write a batch of data out to the file
 
-- Start by learning how to write list data to a CSV file in Python.
+Start by first learning how to write list data to a CSV file in Python, you'll take care of the header later.
 
 [[[generic-python-writing-csv]]]
 
