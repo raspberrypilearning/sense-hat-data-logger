@@ -1,10 +1,10 @@
-## Adding a header to the CSV
+## Adding a header to the CSV file
 
-It would be useful to add a header row to the CSV sheet, so that you know what data each column contains.
+You're collecting many different types of data in the CSV file. So that you know which type of data each column contains, it would be useful to add a header row to the CSV file.
 
-To do this you can simply write an additional row to the CSV, before you start the infinite loop.
+To do this you can simply write an additional row to the CSV file before you start the infinite loop.
 
-- Add this line, after you create your `writer` object and before the `while True` loop starts
+- Add this line after you create your `writer` object and before the `while True` loop starts:
 
 ```python
 data_writer.writerow(['temp','pres','hum','yaw','pitch','roll','mag_x','mag_y','mag_z','acc_x','acc_y','acc_z','gyro_x', 'gyro_y', 'gyro_z', 'datetime'])
