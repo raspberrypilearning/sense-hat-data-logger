@@ -1,7 +1,8 @@
-## Sense HAT Data Logger - Part 2
+## Challenge: selecting the data to be recorded
+--- challenge ---
+You might not always want to record all the sensor data. One solution to this is to simply comment out the lines you don't need in your `get_sense_data()` function.
 
-In the first part of this activity, you built a data logger that logs all data from the Sense HAT as often as it can and starts when your Raspberry Pi starts. If you follow this worksheet, you'll be able to extend your data logger to add some optional features such as:
+Another solution would be to use **conditional selection**.
 
-  - Being able to select which data your program logs from the Sense-HAT
-  - Adding the ability to log data at a fixed interval (every ten seconds for example)
-
+- Can you set up your script so that you pass into your `get_sense_data` function the sensors you want to use, and these are then the only ones that are recorded? Don't forget to add a method to alter the header row of your CSV file as well.
+--- /challenge ---

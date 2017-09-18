@@ -1,17 +1,18 @@
-## Starting your data logger on boot.
-It's quite likely that you will not want to have a screen, keyboard and mouse handy every time you want to log data. A handy way to avoid this is to have you program run whenever your Raspberry Pi boots up.
-To do this you will first need to open a terminal window like the one below, and enter the command `sudo leafpad /etc/rc.local`. The `rc.local` script is the last startup script to load as the Raspberry Pi boots. Anything you add to this script will load on boot.
+## Adding a header to the CSV file
 
-  ![Terminal window](images/terminal.png)
+You're collecting many different types of data in the CSV file. So that you know which type of data each column contains, it would be useful to add a header row to the CSV file.
 
-  Once Leafpad has loaded, you should add two lines like the ones shown here:
+To do this you can simply write an additional row to the CSV file before you start the infinite loop.
 
-  ![rc.local](images/rc_local.png)
+- Add this line after you create your `writer` object and before the `while True` loop starts:
 
-  - The first line changes to the directory where your datalogger script is stored.
-  - The second line changes to the `pi` user  and runs the command `python3 Sense-Logger.py`, the `&` symbol makes this command run as a background task and allows the Raspberry Pi to continue with other tasks.
+```python
+data_writer.writerow(['temp','pres','hum',
+	                  'yaw','pitch','roll',
+                      'mag_x','mag_y','mag_z',
+                      'acc_x','acc_y','acc_z',
+                      'gyro_x', 'gyro_y', 'gyro_z', 
+                      'datetime'])
+```
 
-  You will need to update these lines to reflect the name and location of your program.
-
-  The next time your Raspberry Pi boots it should automatically start logging data
-
+- Make sure the headers are in the same order as the data produced by your `get_sense_data()` function.

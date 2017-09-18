@@ -2,16 +2,22 @@
 
 ### Hardware
 
-* Raspberry Pi Sense-HAT
++ A Raspberry Pi computer
++ A Sense HAT
 
 ### Software
+You will need the [latest version of Raspbian](https://www.raspberrypi.org/downloads/), which already includes the following software packages:
 
-#### Software Installation
+- Python 3
+- Sense HAT for Python 3
+- Minecraft Pi
 
-To install the software you need, run the following commands in the Terminal:
+If for any reason you need to install a package manually, follow these instructions:
+
+[[[rpi-install-software]]]
+
+Type this command into the terminal to install the Sense HAT package:
 
 ```bash
 sudo apt-get install sense-hat
-sudo pip-3.2 install pillow
-sudo pip-3.2 install evdev
 ```
