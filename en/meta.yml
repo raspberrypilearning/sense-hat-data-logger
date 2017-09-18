@@ -1,6 +1,6 @@
-title: Sense HAT Data Logger
+title: Sense HAT data logger
 hero_image: images/banner.png
-description: Using the Sense-HAT hardware and it's Python library you will create a data-logging device
+description: Create a data-logging device using the Sense HAT hardware and Python
 original_url: https://raspberrypi.org/learning/sense-hat-data-logger
 theme: red
 duration: 2
@@ -16,7 +16,7 @@ steps:
 - title: What you will need
 - title: Getting data from the Sense HAT
 - title: Writing the data to a file
-- title: Starting your data logger on boot.
-- title: Adding a header to the CSV
+- title: Starting your data logger on boot
+- title: Adding a header to the CSV file
 - title: Recording at specific time intervals
-- title: "Challenge: Specifying the data to be recorded"
+- title: "Challenge: selecting the data to be recorded"

@@ -2,11 +2,11 @@
 
 ### Hardware
 
-+ A Raspberry Pi Computer
-+ Sense HAT
++ A Raspberry Pi computer
++ A Sense HAT
 
 ### Software
-You will need the [latest version of Raspbian](https://www.raspberrypi.org/downloads/) which already includes the following software packages:
+You will need the [latest version of Raspbian](https://www.raspberrypi.org/downloads/), which already includes the following software packages:
 
 - Python 3
 - Sense HAT for Python 3
