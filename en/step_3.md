@@ -7,7 +7,6 @@ First you can write a short script to get data from the Sense HAT and output it 
 - Pressure
 - Orientation
 - Acceleration
-- Gyroscope
 - Magnetic Field
 
 - Attach your Sense HAT to you Raspberry Pi.
@@ -20,7 +19,7 @@ First you can write a short script to get data from the Sense HAT and output it 
 
 [[[rpi-gui-idle-opening]]]
 
-- To begin this project, your will need to import the code to control your Sense HAT and you will also need a module to fetch the data and time from the Raspberry Pi. Start by adding these two lines of code.
+- To begin this project, your will need to import the code to control your Sense HAT and you will also need a module to fetch the data and time from the Raspberry Pi. Start by adding these three lines of code.
 
 ```python
 from sense_hat import SenseHat
@@ -84,8 +83,6 @@ gyro["z"]
 datetime.now()
 ```
 
-- Now complete your function, add each individual bit of data to the `sense_data` list, and finish by returning the list.
-
 [[[generic-python-append-list]]]
 
 --- hints --- --- hint ---
@@ -117,24 +114,24 @@ def get_sense_data():
 ```
 --- /hint --- --- hint ---
 - Get the remaining sensor readings along with the data and time, by adding the following to your function:
-```python
-mag = sense.get_compass_raw()
-sense_data.append(mag["x"])
-sense_data.append(mag["y"])
-sense_data.append(mag["z"])
+  ```python
+  mag = sense.get_compass_raw()
+  sense_data.append(mag["x"])
+  sense_data.append(mag["y"])
+  sense_data.append(mag["z"])
 
-acc = sense.get_accelerometer_raw()
-sense_data.append(acc["x"])
-sense_data.append(acc["y"])
-sense_data.append(acc["z"])
+  acc = sense.get_accelerometer_raw()
+  sense_data.append(acc["x"])
+  sense_data.append(acc["y"])
+  sense_data.append(acc["z"])
 
-gyro = sense.get_gyroscope_raw()
-sense_data.append(gyro["x"])
-sense_data.append(gyro["y"])
-sense_data.append(gyro["z"])
+  gyro = sense.get_gyroscope_raw()
+  sense_data.append(gyro["x"])
+  sense_data.append(gyro["y"])
+  sense_data.append(gyro["z"])
 
-sense_data.append(datetime.now())
-```
+  sense_data.append(datetime.now())
+  ```
 --- /hint --- --- /hints ---
 
 - To finish off you can look at the data by printing out the list within an infinite loop. Add this to the end of your script and then run the code.
@@ -142,4 +139,10 @@ sense_data.append(datetime.now())
 ```python
 while True:
 	print(get_sense_data())
+```
+
+- You should see a continuous stream of data in the the shell, with each line looking something like this:
+
+```
+[26.7224178314209, 25.068750381469727, 53.77205276489258, 1014.18017578125, 3.8002126669234286, 306.1720338870328, 0.3019065275890227, 71.13333892822266, 59.19926834106445, 39.75812911987305, 0.9896639585494995, 0.12468399852514267, -0.004147999919950962, -0.0013064055237919092, -0.0006561130285263062, -0.0011542239226400852, datetime.datetime(2015, 9, 23, 11, 53, 9, 267584)]
 ```
