@@ -16,7 +16,7 @@ steps:
 - title: What you will need
 - title: Getting data from the Sense HAT
 - title: Writing the data to a file
-- title: Starting your data logger on boot
 - title: Adding a header to the CSV file
 - title: Recording at specific time intervals
+- title: Starting your data logger on boot
 - title: "Challenge: selecting the data to be recorded"
