@@ -2,16 +2,16 @@ title: Sense HAT data logger
 hero_image: images/banner.png
 description: Create a data-logging device using the Sense HAT hardware and Python
 original_url: https://raspberrypi.org/learning/sense-hat-data-logger
-theme: red
+theme: turquoise
 duration: 2
 listed: true
 ingredient: false
 copyedit: true
 curriculum: 2, design-0, programming-2, phys-comp-1, manufacture-0, community-0
-interests: science
-technologies: raspberry-pi, electronic-components, python, sense-hat
+interests: ''
+technologies: raspberry-pi, python, sense-hat
 site_areas: projects
-hardware: raspberry-pi, electronic-components, sense-hat
+hardware: raspberry-pi, sense-hat
 software: python
 version: 4
 last_tested: 2017-01-01
