@@ -5,7 +5,7 @@ In this activity, you will learn how to use the Sense HAT hardware to build a da
 Once you've created your data logger, you will be able to use it to conduct your own experiments and record data. Things we've tried with our data logger include:
 
 - Dropping it from a four-storey building
-- Putting oit in a fridge and observing temperature changes
+- Putting it in a fridge and observing temperature changes
 - Sending it to the edge of space with a helium balloon
 
 ## What you will learn
@@ -20,4 +20,3 @@ This resource covers elements from the following strands of the [Raspberry Pi Di
 
 - [Apply abstraction and decomposition to solve more complex problems](https://www.raspberrypi.org/curriculum/programming/developer)
 - [Process input data to monitor or react to the environment](https://www.raspberrypi.org/curriculum/physical-computing/developer)
-

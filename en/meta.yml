@@ -13,9 +13,9 @@ technologies: raspberry-pi, python, sense-hat
 site_areas: projects
 hardware: raspberry-pi, sense-hat
 software: python
-version: 4
+version: 4.0.1
 last_tested: 2017-01-01
-steps: 
+steps:
 - title: Introduction
 - title: What you will need
 - title: Getting data from the Sense HAT
