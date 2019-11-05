@@ -5,7 +5,7 @@
 - A Raspberry Pi computer
 - A Sense HAT
 
-**If you do not have a Sense HAT, you can use the emulator program available on your Pi**
+**If you do not have a Sense HAT, you can use the emulator program available on your Raspberry Pi**
 
 ### Software
 
