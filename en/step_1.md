@@ -8,17 +8,45 @@ Once you've created your data logger, you will be able to use it to conduct your
 - Putting it in a fridge and observing temperature changes
 - Sending it to the edge of space with a helium balloon
 
-## What you will learn
-By creating a Sense HAT datalogger with your Raspberry Pi you will learn:
+--- collapse ---
+---
+title: What you will learn
+---
 
 - How to collect data from multiple sensors and add it to a list structure
 - To write and append data to a text file from within a Python program
 - To capture and respond to input from the Sense HAT joystick
 - About using threads to allow multiple parts of a program to run at once
 
-This resource covers elements from the following strands of the [Raspberry Pi Digital Making Curriculum](https://www.raspberrypi.org/curriculum/):
+--- /collapse ---
 
-- [Apply abstraction and decomposition to solve more complex problems](https://www.raspberrypi.org/curriculum/programming/developer)
-- [Process input data to monitor or react to the environment](https://www.raspberrypi.org/curriculum/physical-computing/developer)
+--- collapse ---
+---
+title: What you will need
+---
 
-![](https://code.org/api/hour/begin_rpi_sensehat.png)
+### Hardware
+
+- A Raspberry Pi computer
+- A Sense HAT
+
+**If you do not have a Sense HAT, you can use the emulator program available on your Raspberry Pi**
+
+### Software
+
+You will need the [latest version of Raspbian](https://www.raspberrypi.org/downloads/), which already includes the following software packages:
+
+- Python 3
+- Sense HAT for Python 3
+
+If for any reason you need to install a package manually, follow these instructions:
+
+[[[rpi-install-software]]]
+
+Type this command into the terminal to install the Sense HAT package:
+
+```bash
+sudo apt-get install sense-hat
+```
+
+--- /collapse ---

@@ -1,5 +1,8 @@
-## Starting your data logger on boot
+## Challenge: selecting the data to be recorded
+--- challenge ---
+You might not always want to record all the sensor data. One solution to this is to simply comment out the lines you don't need in your `get_sense_data()` function.
 
-This step is completely optional, but you might want to have your script run as soon as the Raspberry Pi boots up. To do this, you can use a **Cron job**. Have a look at the section below to learn how to edit your **crontab** to start scripts on boot.
+Another solution would be to use **conditional selection**.
 
-[[[nix-bash-crontab]]]
+- Can you set up your script so that you pass into your `get_sense_data` function the sensors you want to use, and these are then the only ones that are recorded? Don't forget to add a method to alter the header row of your CSV file as well.
+--- /challenge ---
