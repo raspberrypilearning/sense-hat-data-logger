@@ -2,15 +2,17 @@
 
 ### Hardware
 
-+ A Raspberry Pi computer
-+ A Sense HAT
+- A Raspberry Pi computer
+- A Sense HAT
+
+**If you do not have a Sense HAT, you can use the emulator program available on your Raspberry Pi**
 
 ### Software
+
 You will need the [latest version of Raspbian](https://www.raspberrypi.org/downloads/), which already includes the following software packages:
 
 - Python 3
 - Sense HAT for Python 3
-- Minecraft Pi
 
 If for any reason you need to install a package manually, follow these instructions:
 
