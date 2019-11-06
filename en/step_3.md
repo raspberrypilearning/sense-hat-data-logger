@@ -18,9 +18,9 @@ First, write a short script to get readings from the HAT's sensors and output th
 
 - Once your Sense HAT is attached, boot up your Pi.
 
-- Open IDLE, and create a new file to work in.
+- Open mu from the programming menu.
 
-[[[rpi-gui-idle-opening]]]
+[[[mu-open]]]
 
 - To begin this script, your will need to import the Python modules to control your Sense HAT and to fetch the data and time from the Raspberry Pi. Start by adding these three lines of code:
 
@@ -119,7 +119,9 @@ def get_sense_data():
 --- /hint --- --- hint ---
 
 - Get the remaining sensor readings along with the data and time by adding the following lines to your function:
+
 ```python
+
 mag = sense.get_compass_raw()
 sense_data.append(mag["x"])
 sense_data.append(mag["y"])
