@@ -1,3 +1,4 @@
+---
 title: Sense HAT data logger
 hero_image: images/banner.png
 description: Create a data-logging device using the Sense HAT hardware and Python
@@ -18,9 +19,11 @@ last_tested: 2017-01-01
 steps:
 - title: Introduction
 - title: What you will need
+  completion: engaged
 - title: Getting data from the Sense HAT
 - title: Writing the data to a file
 - title: Adding a header to the CSV file
 - title: Recording at specific time intervals
 - title: Starting your data logger on boot
-- title: "Challenge: selecting the data to be recorded"
+  completion: internal
+- title: 'Challenge: selecting the data to be recorded'
