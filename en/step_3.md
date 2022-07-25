@@ -10,6 +10,7 @@ It would be more useful to write this data to a Comma Separated Values (CSV) fil
 --- task ---
 
 Import the `csv` `writer` class.
+
 --- code ---
 ---
 language: python
