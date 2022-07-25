@@ -27,12 +27,6 @@ steps:
   - engaged
 - title: Recording at specific time intervals
 - title: Starting your data logger on boot
-<<<<<<< HEAD
-- title: 'Challenge: selecting the data to be recorded'
-  completion:
-  - internal
-=======
   completion:
   - internal
 - title: 'Challenge: selecting the data to be recorded'
->>>>>>> master
