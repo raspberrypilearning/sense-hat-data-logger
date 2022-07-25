@@ -162,6 +162,8 @@ highlight_lines: 41-43
 
 --- /code ---
 
+--- /task ---
+
 --- task ---
 
 The function should return the `sense_data` list at the end.
