@@ -20,11 +20,19 @@ steps:
 - title: Introduction
 - title: Getting data from the Sense HAT
 - title: Writing the data to a file
+  completion:
+  - engaged
 - title: Adding a header to the CSV file
   completion:
   - engaged
 - title: Recording at specific time intervals
 - title: Starting your data logger on boot
+<<<<<<< HEAD
 - title: 'Challenge: selecting the data to be recorded'
   completion:
   - internal
+=======
+  completion:
+  - internal
+- title: 'Challenge: selecting the data to be recorded'
+>>>>>>> master

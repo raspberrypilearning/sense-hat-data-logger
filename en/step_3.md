@@ -1,48 +1,67 @@
 ## Writing the data to a file
 
-The program you have produced so far is able to continually check the Sense HAT sensors and write this data to the screen. However, unless you're a very fast reader, this is not very helpful.
+The program you have produced so far is able to continually check the Sense HAT sensors and write this data to the screen.
 
-It would be more useful to write this data to a CSV (comma separated values) file, which you can examine once your logging program has finished. To create this file, you will need to do the following:
-  - Specify the file name for this file
-  - Add a header row to the start of the file
-  - Periodically write a batch of data out to the file
+It would be more useful to write this data to a Comma Separated Values (CSV) file, which you can examine once your logging program has finished. To create this file, you will need to do the following:
+  - Create the file
+  - Add a header row for each sensor reading
+  - Write the data to the file
 
-Start by first learning how to write list data to a CSV file in Python, you'll take care of the header later.
+--- task ---
 
-[[[generic-python-writing-csv]]]
+Import the `csv` `writer` class.
+--- code ---
+---
+language: python
+filename: main.py
+line_numbers: 1
+line_number_start: 
+highlight_lines: 3
+---
+from sense_hat import SenseHat
+from datetime import datetime
+from csv import writer
 
-- Now you can alter your code to continuously write the data from your `get_sense_data()` function to a CSV file. Here's one way to proceed:
-  1. Before your loop starts, open a `csv` file and create your writer
-  1. Within your loop, write the returned data from the function to the file.
-  
---- hints --- --- hint ---
-Import the `writer` class, and then open the file and create a `writer` object.
-```python
-from csv import writer ## This line is at the top of your code
+sense = SenseHat()
+--- /code ---
 
-## This comes after your get_sense_data() function
+--- /task ---
+
+--- task ---
+
+Remove your current `while True` loop. Replace this with these lines to open a new `.csv` file and let you write to the file.
+
+--- code ---
+---
+language: python
+filename: main.py
+line_numbers: true
+line_number_start: 47
+highlight_lines: 47-48
+---
+with open('data.csv', 'w', newline='') as f:
+    data_writer = writer(f)
+--- /code ---
+
+--- /task ---
+
+--- task ---
+
+Create a variable to hold the data from the function call within a new `while True` loop.
+
+--- code ---
+---
+language: python
+filename: main
+line_numbers: true
+line_number_start: 47
+highlight_lines: 50-51
+---
 with open('data.csv', 'w', newline='') as f:
     data_writer = writer(f)
 	
 	while True:
-```
---- /hint --- --- hint ---
-Create a variable to hold the data from the function call.
-```python
-with open('data.csv', 'w', newline='') as f:
-    data_writer = writer(f)
-	
-	while True:
-		data = get_sense_data()
-```
---- /hint --- --- hint ---
-Now just write that data to the file.
-```python
-with open('data.csv', 'w', newline='') as f:
-    data_writer = writer(f)
-	
-	while True:
-		data = get_sense_data()
-		data_writer.writerow(data)
-```
---- /hint --- --- /hints ---
+        data_writer.writerow(data)
+--- /code ---
+
+--- /task ---
