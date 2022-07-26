@@ -7,6 +7,7 @@ To do this you can write an additional row to the CSV file before you start the 
 --- task ---
 
 Add these lines after you create your `writer` object and before the `while True` loop starts:
+
 --- code ---
 ---
 language: python
@@ -30,9 +31,4 @@ with open('data.csv', 'w', newline='') as f:
 
 --- /task ---
 
-
-
-
-
-
-- Make sure the headers are in the same order as the data produced by your `get_sense_data()` function.
+**Tip** Make sure the headers are in the same order as the data produced by your `get_sense_data()` function.
