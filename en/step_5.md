@@ -31,6 +31,7 @@ delay = 1
 --- /task ---
 
 --- task ---
+
 Within your `while` loop, you can calculate the difference in time, between the current time and the time stored in the `data` list.
 
 --- code ---
@@ -74,10 +75,11 @@ highlight_lines: 61-63
 
 Run your program for a few seconds, then stop the program and have a look at the `.csv` file. You should see that the file is only being written to periodically. You can adjust the delay time you have set, to write more frequently or less frequently.
 
-```
+```python
 temp,pres,hum,red,green,blue,clear,yaw,pitch,roll,mag_x,mag_y,mag_z,acc_x,acc_y,acc_z,gyro_x,gyro_y,gyro_z,datetime
 36.108428955078125,1024.423095703125,32.416011810302734,49,38,38,90,138.01520101110313,12.227523326693655,352.8891865315218,-29.801549911499023,-25.660537719726562,5.958069324493408,-0.20684826374053955,-0.11651210486888885,0.9470059275627136,-0.002123238518834114,0.0003891065716743469,-0.0002552233636379242,2022-07-26 11:27:05.983233
 36.23430633544922,1024.432373046875,33.37968826293945,49,38,38,90,137.72729487720875,12.181723493214136,352.9463897927074,-29.705188751220703,-25.5445613861084,6.508992671966553,-0.20660144090652466,-0.11795946210622787,0.9484680891036987,0.0003636479377746582,0.0006903782486915588,-3.945082426071167e-06,2022-07-26 11:27:08.091969
 ```
+
 --- /task ---
 
