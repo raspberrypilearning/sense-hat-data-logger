@@ -23,7 +23,7 @@ Attach your Sense HAT to you Raspberry Pi.
 
 --- task ---
 
-- Once your Sense HAT is attached, boot up your Pi.
+- Once your Sense HAT is attached, boot up the Raspberry Pi.
 
 --- /task ---
 
@@ -41,8 +41,8 @@ To begin this script, your will need to import the Python modules to control you
 ---
 language: python
 filename: main.py
-line_numbers: 
-line_number_start: 
+line_numbers: true
+line_number_start: 1 
 highlight_lines: 
 ---
 from sense_hat import SenseHat

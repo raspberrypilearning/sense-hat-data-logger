@@ -26,6 +26,7 @@ with open('data.csv', 'w', newline='') as f:
                           'gyro_x', 'gyro_y', 'gyro_z', 
                           'datetime'])
     while True:
+        data = get_sense_data()
         data_writer.writerow(data)
 --- /code ---
 

@@ -43,8 +43,8 @@ line_number_start: 58
 highlight_lines: 60
 ---
     while True:
-	    data = get_sense_data()
-	    time_difference = data[-1] - timestamp
+        data = get_sense_data()
+        time_difference = data[-1] - timestamp
 --- /code ---
 
 --- /task ---
