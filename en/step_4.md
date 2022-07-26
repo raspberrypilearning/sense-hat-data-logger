@@ -1,48 +1,35 @@
-## Writing the data to a file
+## Adding a header to the CSV file
 
-The program you have produced so far is able to continually check the Sense HAT sensors and write this data to the screen. However, unless you're a very fast reader, this is not very helpful.
+You're collecting many different types of data in the CSV file. So that you know which type of data each column contains.
 
-It would be more useful to write this data to a CSV (comma separated values) file, which you can examine once your logging program has finished. To create this file, you will need to do the following:
-  - Specify the file name for this file
-  - Add a header row to the start of the file
-  - Periodically write a batch of data out to the file
+To do this you can write an additional row to the CSV file before you start the infinite loop.
 
-Start by first learning how to write list data to a CSV file in Python, you'll take care of the header later.
+--- task ---
 
-[[[generic-python-writing-csv]]]
+Add these lines after you create your `writer` object and before the `while True` loop starts:
 
-- Now you can alter your code to continuously write the data from your `get_sense_data()` function to a CSV file. Here's one way to proceed:
-  1. Before your loop starts, open a `csv` file and create your writer
-  1. Within your loop, write the returned data from the function to the file.
-  
---- hints --- --- hint ---
-Import the `writer` class, and then open the file and create a `writer` object.
-```python
-from csv import writer ## This line is at the top of your code
-
-## This comes after your get_sense_data() function
+--- code ---
+---
+language: python
+filename: main
+line_numbers: true
+line_number_start: 47
+highlight_lines: 49-55
+---
 with open('data.csv', 'w', newline='') as f:
     data_writer = writer(f)
-	
-	while True:
-```
---- /hint --- --- hint ---
-Create a variable to hold the data from the function call.
-```python
-with open('data.csv', 'w', newline='') as f:
-    data_writer = writer(f)
-	
-	while True:
-		data = get_sense_data()
-```
---- /hint --- --- hint ---
-Now just write that data to the file.
-```python
-with open('data.csv', 'w', newline='') as f:
-    data_writer = writer(f)
-	
-	while True:
-		data = get_sense_data()
-		data_writer.writerow(data)
-```
---- /hint --- --- /hints ---
+    data_writer.writerow(['temp', 'pres', 'hum',
+                          'red', 'green', 'blue', 'clear', #only for Sense HAT version 2
+                          'yaw', 'pitch', 'roll',
+                          'mag_x', 'mag_y', 'mag_z',
+                          'acc_x', 'acc_y', 'acc_z',
+                          'gyro_x', 'gyro_y', 'gyro_z', 
+                          'datetime'])
+    while True:
+        data = get_sense_data()
+        data_writer.writerow(data)
+--- /code ---
+
+--- /task ---
+
+**Tip** Make sure the headers are in the same order as the data produced by your `get_sense_data()` function.

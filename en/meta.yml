@@ -18,14 +18,15 @@ version: 4.0.1
 last_tested: 2017-01-01
 steps:
 - title: Introduction
-- title: What you will need
 - title: Getting data from the Sense HAT
 - title: Writing the data to a file
   completion:
   - engaged
 - title: Adding a header to the CSV file
+  completion:
+  - engaged
 - title: Recording at specific time intervals
 - title: Starting your data logger on boot
   completion:
   - internal
-- title: 'Challenge: selecting the data to be recorded'
+- title: Selecting the data to be recorded
