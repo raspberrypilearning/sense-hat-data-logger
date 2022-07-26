@@ -29,4 +29,4 @@ steps:
 - title: Starting your data logger on boot
   completion:
   - internal
-- title: 'Challenge: selecting the data to be recorded'
+- title: Selecting the data to be recorded

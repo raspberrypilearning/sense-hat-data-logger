@@ -56,9 +56,9 @@ Lastly, if the `time_difference` is greater than the delay that you have set, th
 --- code ---
 ---
 language: python
-filename: main
+filename: main.py
 line_numbers: true
-line_number_start:58 
+line_number_start: 58 
 highlight_lines: 61-63
 ---
     while True:
