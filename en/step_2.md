@@ -121,7 +121,7 @@ def get_sense_data():
     sense_data.append(green)
     sense_data.append(blue)
     sense_data.append(clear)
-    # Get oriendation dara
+    # Get orientation data
     orientation = sense.get_orientation()
     sense_data.append(orientation["yaw"])
     sense_data.append(orientation["pitch"])
@@ -131,12 +131,12 @@ def get_sense_data():
     sense_data.append(mag["x"])
     sense_data.append(mag["y"])
     sense_data.append(mag["z"])
-    # Get accerometer data
+    # Get accelerometer data
     acc = sense.get_accelerometer_raw()
     sense_data.append(acc["x"])
     sense_data.append(acc["y"])
     sense_data.append(acc["z"])
-    #Get gyroscop data
+    #Get gyroscope data
     gyro = sense.get_gyroscope_raw()
     sense_data.append(gyro["x"])
     sense_data.append(gyro["y"])
