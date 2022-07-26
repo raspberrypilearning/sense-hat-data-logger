@@ -2,46 +2,81 @@
 
 At the moment your script records data as quickly as it possibly can. This is very useful for some experiments, but you may prefer to record data once per second, or even less frequently.
 
-Normally in such situations you would use a `sleep()` function to pause the script. However, this can result in inaccurate readings from some of the Sense HAT's orientation sensors, which need to be regularly polled.
+Normally you would use a `sleep()` function to pause the script. This can cause inaccurate readings from some of the IMU sensor. Instead you can use `timedelta` to check the time difference between two readings.
 
-To get around this, you can use `timedelta` to check the time difference between two readings.
+--- task ---
 
-[[[generic-python-datetime-timedelta]]]
+At the top of your program, set the length of delay between readings in seconds, and get the current date and time.
 
-To use this approach to collect data you would need to do the following:
-	- At the start of your script, create a `timestamp` variable set to `datetime.now()`
-	- Decide how long you want the interval between data records to be (in seconds), and create a variable called `delay` to store that number
-	- Within your infinite loop, if the difference between the `timestamp` and the time of the reading returned by your `get_sense_data()` function is greater than `delay`, write data and reset `timestamp`
-	
-- Have a go at adding a one-second delay to your data writing intervals, and use the hints below if you get stuck.
+--- code ---
+---
+language: python
+filename: main.py
+line_numbers: true
+line_number_start: 1 
+highlight_lines: 9-10
+---
+from sense_hat import SenseHat
+from datetime import datetime
+from csv import writer
 
---- hints --- --- hint ---
-Start by setting the `timestamp` and `delay` variables near the top of your script:
+sense = SenseHat()
+sense.color.gain = 60
+sense.color.integration_cycles = 64
 
-```python
 timestamp = datetime.now()
 delay = 1
-```
---- /hint --- --- hint ---
-The time the reading was taken is the **last** item in the list created by your `get_sense_data()` function, so you can now calculate the time difference like this:
+--- /code ---
 
-```python
-while True:
-	data = get_sense_data()
-	dt = data[-1] - timestamp
-```
---- /hint --- --- hint ---
-If that `dt` variable is greater than the `delay` you specified, then the data can be written and `timestamp` can be reset.
-```python
-while True:
-	data = get_sense_data()
-	dt = data[-1] - timestamp
-	if dt.seconds > delay:
-		data_writer.writerow(data)
-		timestamp = datetime.now()
-```
---- /hint --- --- /hints ---
+--- /task ---
 
-- Have a go at trying different values for the `delay` each time you run your script.
+--- task ---
+Within your `while` loop, you can calculate the difference in time, between the current time and the time stored in the `data` list.
+--- code ---
+---
+language: python
+filename: main.py
+line_numbers: true
+line_number_start: 58
+highlight_lines: 60
+---
+    while True:
+	    data = get_sense_data()
+	    time_difference = data[-1] - timestamp
+--- /code ---
 
-- Can you set a `microsecond` delay?
+--- /task ---
+
+--- task ---
+
+Lastly, if the `time_difference` is greater than the delay that you have set, the `data` can be written to the file.
+
+--- code ---
+---
+language: python
+filename: main
+line_numbers: true
+line_number_start:58 
+highlight_lines: 61-63
+---
+    while True:
+        data = get_sense_data()
+        time_difference = data[-1] - timestamp
+        if time_difference.seconds > delay:
+            data_writer.writerow(data)
+            timestamp = datetime.now()
+--- /code ---
+
+--- /task ---
+
+--- task ---
+
+Run your program for a few seconds, then stop the program and have a look at the `.csv` file. You should see that the file is only being written to periodically. You can adjust the delay time you have set, to write more frequently or less frequently.
+
+```
+temp,pres,hum,red,green,blue,clear,yaw,pitch,roll,mag_x,mag_y,mag_z,acc_x,acc_y,acc_z,gyro_x,gyro_y,gyro_z,datetime
+36.108428955078125,1024.423095703125,32.416011810302734,49,38,38,90,138.01520101110313,12.227523326693655,352.8891865315218,-29.801549911499023,-25.660537719726562,5.958069324493408,-0.20684826374053955,-0.11651210486888885,0.9470059275627136,-0.002123238518834114,0.0003891065716743469,-0.0002552233636379242,2022-07-26 11:27:05.983233
+36.23430633544922,1024.432373046875,33.37968826293945,49,38,38,90,137.72729487720875,12.181723493214136,352.9463897927074,-29.705188751220703,-25.5445613861084,6.508992671966553,-0.20660144090652466,-0.11795946210622787,0.9484680891036987,0.0003636479377746582,0.0006903782486915588,-3.945082426071167e-06,2022-07-26 11:27:08.091969
+```
+--- /task ---
+

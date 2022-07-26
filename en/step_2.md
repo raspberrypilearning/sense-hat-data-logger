@@ -110,22 +110,22 @@ line_number_start: 9
 highlight_lines: 11-40
 ---
 def get_sense_data():
-	sense_data = []
-	# Get environmental data
+    sense_data = []
+    # Get environmental data
     sense_data.append(sense.get_temperature())
-	sense_data.append(sense.get_pressure())
-	sense_data.append(sense.get_humidity())
+    sense_data.append(sense.get_pressure())
+    sense_data.append(sense.get_humidity())
     # Get colour sensor data (version 2 Sense HAT only)
     red, green, blue, clear = sense.colour.colour
     sense_data.append(red)
     sense_data.append(green)
     sense_data.append(blue)
     sense_data.append(clear)
-	# Get oriendation dara
+    # Get oriendation dara
     orientation = sense.get_orientation()
-	sense_data.append(orientation["yaw"])
-	sense_data.append(orientation["pitch"])
-	sense_data.append(orientation["roll"])
+    sense_data.append(orientation["yaw"])
+    sense_data.append(orientation["pitch"])
+    sense_data.append(orientation["roll"])
     # Get compass data
     mag = sense.get_compass_raw()
     sense_data.append(mag["x"])
@@ -140,7 +140,7 @@ def get_sense_data():
     gyro = sense.get_gyroscope_raw()
     sense_data.append(gyro["x"])
     sense_data.append(gyro["y"])
-    sense_data.append(gyro["z"])    
+    sense_data.append(gyro["z"])
 --- /code ---
 
 --- /task ---
@@ -183,8 +183,6 @@ highlight_lines: 44
 --- /code ---
 
 --- /task ---
-
-
 
 --- task ---
 

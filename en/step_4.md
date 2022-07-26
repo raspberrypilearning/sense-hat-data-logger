@@ -17,14 +17,14 @@ highlight_lines: 49-55
 ---
 with open('data.csv', 'w', newline='') as f:
     data_writer = writer(f)
-	data_writer.writerow(['temp', 'pres', 'hum',
-                      'red', 'green', blue', 'clear', #only for Sense HAT version 2
-	                  'yaw', 'pitch', 'roll',
-                      'mag_x', 'mag_y', 'mag_z',
-                      'acc_x', 'acc_y', 'acc_z',
-                      'gyro_x', 'gyro_y', 'gyro_z', 
-                      'datetime'])
-	while True:
+    data_writer.writerow(['temp', 'pres', 'hum',
+                          'red', 'green', 'blue', 'clear', #only for Sense HAT version 2
+                          'yaw', 'pitch', 'roll',
+                          'mag_x', 'mag_y', 'mag_z',
+                          'acc_x', 'acc_y', 'acc_z',
+                          'gyro_x', 'gyro_y', 'gyro_z', 
+                          'datetime'])
+    while True:
         data_writer.writerow(data)
 --- /code ---
 
