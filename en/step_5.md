@@ -32,6 +32,7 @@ delay = 1
 
 --- task ---
 Within your `while` loop, you can calculate the difference in time, between the current time and the time stored in the `data` list.
+
 --- code ---
 ---
 language: python
