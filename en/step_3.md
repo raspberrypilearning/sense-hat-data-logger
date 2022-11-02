@@ -48,7 +48,7 @@ with open('data.csv', 'w', newline='') as f:
 
 --- task ---
 
-Create a variable to hold the data from the function call within a new `while True` loop, and write that data to the new file.
+Create a variable to hold the data from the function call within a new `while True` loop, and write that data to the new file. Make sure to set the file buffering mode to line mode (expressed as a 1), so that every row is saved immediately and to avoid data loss.
 
 --- code ---
 ---
@@ -58,7 +58,7 @@ line_numbers: true
 line_number_start: 47
 highlight_lines: 50-52
 ---
-with open('data.csv', 'w', newline='') as f:
+with open('data.csv', 'w', buffering=1, newline='') as f:
     data_writer = writer(f)
 	
 	while True:

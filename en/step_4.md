@@ -16,7 +16,7 @@ line_numbers: true
 line_number_start: 47
 highlight_lines: 49-55
 ---
-with open('data.csv', 'w', newline='') as f:
+with open('data.csv', 'w', buffering=1, newline='') as f:
     data_writer = writer(f)
     data_writer.writerow(['temp', 'pres', 'hum',
                           'red', 'green', 'blue', 'clear', #only for Sense HAT version 2
