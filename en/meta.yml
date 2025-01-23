@@ -23,10 +23,10 @@ steps:
   completion:
   - engaged
 - title: Adding a header to the CSV file
-  completion:
-  - engaged
 - title: Recording at specific time intervals
 - title: Starting your data logger on boot
   completion:
   - internal
 - title: Selecting the data to be recorded
+  completion:
+  - external
